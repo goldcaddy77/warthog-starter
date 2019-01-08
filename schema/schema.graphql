@@ -9,7 +9,7 @@ interface BaseGraphQLObject {
   version: Int!
 }
 
-type BaseObject implements BaseGraphQLObject {
+type Model implements BaseGraphQLObject {
   id: String!
   createdAt: DateTime!
   createdById: String!

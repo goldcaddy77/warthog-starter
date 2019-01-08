@@ -1,5 +1,5 @@
-const assert = require('assert');
-const dotenv = require('dotenv');
+import * as assert from 'assert';
+import * as dotenv from 'dotenv';
 const SnakeNamingStrategy = require('./src/core/type-graphql/SnakeNamingStrategy');
 
 // Load environment variables

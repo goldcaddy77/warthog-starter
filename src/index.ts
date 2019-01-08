@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 
-const dotenv = require('dotenv');
+import * as dotenv from 'dotenv';
 import { Container } from 'typedi';
 import { useContainer as TypeGraphQLUseContainer } from 'type-graphql';
 import { useContainer as TypeORMUseContainer } from 'typeorm';

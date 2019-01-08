@@ -1,7 +1,7 @@
-import { BaseObject, EmailField, EntityObject, StringField } from 'warthog';
+import { BaseModel, EmailField, Model, StringField } from 'warthog';
 
-@EntityObject()
-export class User extends BaseObject {
+@Model()
+export class User extends BaseModel {
   @StringField({ maxLength: 30 })
   firstName?: string;
 
