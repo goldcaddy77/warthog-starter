@@ -1,0 +1,50 @@
+{
+  "name": "warthog-example",
+  "version": "0.0.0",
+  "description": "Warthog GraphQL API minimal example",
+  "license": "MIT",
+  "scripts": {
+    "bootstrap": "mkdir -p generated && yarn db:create && yarn generate:binding && yarn db:seed:dev",
+    "db:create": "createdbjs $(dotenv -p TYPEORM_DATABASE) 2>&1 || :",
+    "db:seed:dev": "ts-node tools/seed.ts",
+    "generate:binding": "yarn graphql-binding --input generated/schema.ts --language typescript --outputBinding generated/binding.ts",
+    "list:users": "ts-node ./tools/list-users.ts",
+    "start": "yarn generate:binding && ts-node src/index.ts"
+  },
+  "dependencies": {
+    "@types/faker": "^4.1.2",
+    "@types/graphql": "^14.0.4",
+    "@types/graphql-iso-date": "^3.3.0",
+    "@types/lodash": "^4.14.108",
+    "@types/node-emoji": "^1.8.0",
+    "@types/pg": "^7.4.8",
+    "apollo-server-express": "^2.3.1",
+    "class-transformer": "^0.2.0",
+    "class-validator": "^0.9.1",
+    "dataloader": "^1.4.0",
+    "dotenv": "^6.0.0",
+    "dotenvi": "^0.5.1",
+    "faker": "^4.1.0",
+    "graphql": "^14.0.2",
+    "graphql-iso-date": "^3.5.0",
+    "lodash": "^4.17.10",
+    "node-emoji": "^1.8.1",
+    "pg": "^7.3.0",
+    "pgtools": "^0.3.0",
+    "reflect-metadata": "^0.1.12",
+    "ts-node": "^7.0.1",
+    "typeorm-typedi-extensions": "^0.2.1",
+    "warthog": "^1.1.0"
+  },
+  "devDependencies": {
+    "@types/dotenv": "^6.1.0",
+    "@types/node": "^10.5.7",
+    "@types/ws": "^6.0.1",
+    "dotenv-cli": "^1.4.0",
+    "husky": "^1.3.1",
+    "nodemon": "^1.17.5",
+    "prettier": "^1.15.3",
+    "tslint": "^5.11.0",
+    "typescript": "3.2.2"
+  }
+}

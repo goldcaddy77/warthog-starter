@@ -1,0 +1,21 @@
+query {
+  users(where: { lastName_startsWith: "A" }, limit: 5, orderBy: createdAt_DESC) {
+    id
+    firstName
+    lastName
+    createdAt
+  }
+}
+
+mutation {
+  createUser(data: { firstName: "Test", lastName: "User", email: "testuser@gmail.com" }) {
+    id
+    firstName
+    lastName
+    createdAt
+    createdById
+    updatedAt
+    updatedById
+    version
+  }
+}
