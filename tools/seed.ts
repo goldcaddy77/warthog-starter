@@ -3,12 +3,11 @@ import 'reflect-metadata';
 import * as dotenv from 'dotenv';
 import * as Faker from 'faker';
 import { Container } from 'typedi';
-import { useContainer as TypeGraphQLUseContainer } from 'type-graphql';
-import { useContainer as TypeORMUseContainer } from 'typeorm';
 
 dotenv.config();
 
 import { getApp } from '../src/app';
+import { UserStatus } from '../src/modules/user/user.entity';
 
 if (process.env.NODE_ENV !== 'development') {
   throw 'Seeding only available in development environment';
@@ -18,10 +17,7 @@ if (process.env.NODE_ENV !== 'development') {
 const NUM_USERS = 100;
 
 async function seedDatabase() {
-  TypeGraphQLUseContainer(Container);
-  TypeORMUseContainer(Container);
-
-  let app = getApp();
+  let app = getApp({ container: Container });
   await app.start();
 
   const binding = await app.getBinding();
@@ -34,6 +30,7 @@ async function seedDatabase() {
     const firstName = Faker.name.firstName();
     const lastName = Faker.name.lastName();
     const email = `${firstName.substr(0, 1).toLowerCase()}${lastName.toLowerCase()}-${random}@fakeemail.com`;
+    const status = Math.random() > 0.2 ? UserStatus.ACTIVE : UserStatus.INACTIVE;
 
     try {
       const user = await binding.mutation.createUser(
@@ -41,7 +38,8 @@ async function seedDatabase() {
           data: {
             email,
             firstName,
-            lastName
+            lastName,
+            status
           }
         },
         `{ id email createdAt createdById }`
