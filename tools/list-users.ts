@@ -2,19 +2,13 @@ import 'reflect-metadata';
 
 import * as dotenv from 'dotenv';
 import { Container } from 'typedi';
-import { useContainer as TypeGraphQLUseContainer } from 'type-graphql';
-import { useContainer as TypeORMUseContainer } from 'typeorm';
-
 dotenv.config();
 
 import { getApp } from '../src/app';
 import { Binding } from '../generated/binding';
 
 async function bootstrap() {
-  TypeGraphQLUseContainer(Container);
-  TypeORMUseContainer(Container);
-
-  const app = getApp({}, { logging: false });
+  const app = getApp({ container: Container }, { logging: false });
   await app.start();
 
   // Note: this binding is type-safe from your generated API.

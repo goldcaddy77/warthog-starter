@@ -1,19 +1,15 @@
 import 'reflect-metadata';
-
 import * as dotenv from 'dotenv';
 import { Container } from 'typedi';
-import { useContainer as TypeGraphQLUseContainer } from 'type-graphql';
-import { useContainer as TypeORMUseContainer } from 'typeorm';
 
-dotenv.config(); // Load environment variables
+dotenv.config();
 
 import { getApp } from './app';
 
 async function bootstrap() {
-  TypeGraphQLUseContainer(Container);
-  TypeORMUseContainer(Container);
-
-  const app = getApp();
+  const app = getApp({
+    container: Container
+  });
   await app.start();
 }
 
