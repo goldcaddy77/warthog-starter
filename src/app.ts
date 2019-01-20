@@ -1,17 +1,39 @@
-import 'reflect-metadata';
+import "reflect-metadata";
 
-import { App, AppOptions } from 'warthog';
+import { Request } from "express";
+import { Container } from "typedi";
+import { App, BaseContext } from "warthog";
 
-export function getApp(appOptions: Partial<AppOptions> = {}, dbOptions: any = {}) {
-  return new App(appOptions, {
-    cache: true,
-    port: 5432,
-    host: 'localhost',
-    entities: ['src/**/*.entity.ts'],
-    synchronize: true,
-    logger: 'advanced-console',
-    logging: 'all',
-    type: 'postgres',
-    ...dbOptions
-  });
+interface Context extends BaseContext {
+  user: {
+    email: string;
+    id: string;
+    permissions: string;
+  };
+}
+
+export function getApp(appOptions = {}, dbOptions = {}) {
+  return new App<Context>(
+    {
+      container: Container,
+      // Inject a fake user.  In a real app you'd parse a JWT to add the user
+      context: (request: Request) => {
+        return {
+          user: {
+            email: "admin@test.com",
+            id: "abc12345",
+            permissions: [
+              "user:read",
+              "user:update",
+              "user:create",
+              "user:delete",
+              "photo:delete"
+            ]
+          }
+        };
+      },
+      ...appOptions
+    },
+    dbOptions
+  );
 }

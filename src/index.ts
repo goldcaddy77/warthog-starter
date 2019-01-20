@@ -1,22 +1,20 @@
-import 'reflect-metadata';
-import * as dotenv from 'dotenv';
-import { Container } from 'typedi';
+import "reflect-metadata";
+
+import * as dotenv from "dotenv";
 
 dotenv.config();
 
-import { getApp } from './app';
+import { getApp } from "./app";
 
 async function bootstrap() {
-  const app = getApp({
-    container: Container
-  });
-  await app.start();
+  const app = getApp();
+  return app.start();
 }
 
 bootstrap().catch((error: Error) => {
   console.error(error);
   if (error.stack) {
-    console.error(error.stack!.split('\n'));
+    console.error(error.stack!.split("\n"));
   }
   process.exit(1);
 });

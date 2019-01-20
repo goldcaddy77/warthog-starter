@@ -7,7 +7,7 @@ import { Container } from 'typedi';
 dotenv.config();
 
 import { getApp } from '../src/app';
-import { UserStatus } from '../src/modules/user/user.entity';
+import { UserStatus } from '../src/user.model';
 
 if (process.env.NODE_ENV !== 'development') {
   throw 'Seeding only available in development environment';
@@ -17,7 +17,7 @@ if (process.env.NODE_ENV !== 'development') {
 const NUM_USERS = 100;
 
 async function seedDatabase() {
-  let app = getApp({ container: Container });
+  const app = getApp({ container: Container });
   await app.start();
 
   const binding = await app.getBinding();

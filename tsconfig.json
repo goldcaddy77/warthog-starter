@@ -14,10 +14,14 @@
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
-    "noUnusedLocals": true,
+    // "noUnusedLocals" needs to be false as we auto-generate some things in the generated folder
+    // that are not always used
+    "noUnusedLocals": false,
     "strict": true,
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "types": ["jest", "isomorphic-fetch", "node"]
+
   },
-  "include": ["src/**/*", "tools/**/*", "generated/**/*"],
-  "exclude": ["node_modules/**/*"]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules/**/*", "generated/**/*", "tools/**/*"]
 }
