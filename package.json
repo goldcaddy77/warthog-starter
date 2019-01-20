@@ -3,18 +3,40 @@
   "version": "0.0.0",
   "description": "Warthog GraphQL API minimal example",
   "license": "MIT",
+  "author": {
+    "name": "Dan Caddigan",
+    "url": "https://github.com/goldcaddy77"
+  },
   "scripts": {
-    "bootstrap": "mkdir -p generated && yarn db:create && yarn db:seed:dev",
+    "bootstrap": "cp .env.example .env && yarn && yarn db:create && yarn db:seed:dev",
     "db:create": "createdbjs $(dotenv -p TYPEORM_DATABASE) 2>&1 || :",
     "db:drop": "dropdbjs $(dotenv -p TYPEORM_DATABASE) 2>&1 || :",
     "db:seed:dev": "ts-node tools/seed.ts",
     "list:users": "ts-node ./tools/list-users.ts",
     "playground:open": "open http://localhost:$(dotenv -p APP_PORT)/graphql",
-    "start": "npm-run-all --parallel start:ts playground:open",
-    "start:ts": "ts-node --type-check src/index.ts"
+    "prettier": "prettier ./{src,test,tools}/**/*.ts --write",
+    "start": "DEBUG=warthog* run-p start:ts playground:open",
+    "start:ts": "ts-node-dev --type-check src/index.ts",
+    "test": "jest --detectOpenHandles --verbose --coverage",
+    "watch:ts": "nodemon -e ts,graphql -x ts-node --type-check src/index.ts"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && tsc -p ./tsconfig.json && yarn test"
+    }
+  },
+  "lint-staged": {
+    "*.ts": [
+      "tslint --fix",
+      "prettier --write",
+      "git add"
+    ],
+    "*.{json}": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "dependencies": {
-    "@types/faker": "^4.1.2",
     "@types/graphql": "^14.0.4",
     "@types/graphql-iso-date": "^3.3.0",
     "@types/lodash": "^4.14.108",
@@ -26,28 +48,54 @@
     "dataloader": "^1.4.0",
     "dotenv": "^6.0.0",
     "dotenvi": "^0.5.1",
-    "faker": "^4.1.0",
+    "express": "^4.16.4",
     "graphql": "^14.0.2",
     "graphql-iso-date": "^3.5.0",
     "lodash": "^4.17.10",
     "node-emoji": "^1.8.1",
     "pg": "^7.3.0",
     "pgtools": "^0.3.0",
-    "reflect-metadata": "^0.1.12",
+    "reflect-metadata": "^0.1.13",
     "ts-node": "^7.0.1",
-    "typeorm-typedi-extensions": "^0.2.1",
-    "warthog": "^1.4.0"
+    "warthog": "^1.8.2"
   },
   "devDependencies": {
     "@types/dotenv": "^6.1.0",
+    "@types/faker": "^4.1.2",
+    "@types/isomorphic-fetch": "^0.0.34",
+    "@types/jest": "^23.3.11",
     "@types/node": "^10.5.7",
     "@types/ws": "^6.0.1",
     "dotenv-cli": "^1.4.0",
+    "faker": "^4.1.0",
     "husky": "^1.3.1",
+    "jest": "^23.6.0",
+    "lint-staged": "^8.1.0",
     "nodemon": "^1.17.5",
     "npm-run-all": "^4.1.5",
     "prettier": "^1.15.3",
+    "ts-jest": "^23.10.5",
+    "ts-node-dev": "^1.0.0-pre.32",
     "tslint": "^5.11.0",
+    "tslint-config-prettier": "^1.17.0",
     "typescript": "3.2.2"
+  },
+  "jest": {
+    "transform": {
+      ".ts": "ts-jest"
+    },
+    "testRegex": "\\.test\\.ts$",
+    "moduleFileExtensions": [
+      "js",
+      "ts"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "\\.test\\.ts$"
+    ]
+  },
+  "prettier": {
+    "printWidth": 100,
+    "singleQuote": true
   }
 }

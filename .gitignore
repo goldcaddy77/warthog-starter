@@ -46,5 +46,3 @@ tmp
 
 # Generated
 generated/*
-!generated/index.ts
-!generated/schema.ts

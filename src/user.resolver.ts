@@ -2,29 +2,28 @@ import { GraphQLResolveInfo } from 'graphql';
 import { Arg, Args, Ctx, Mutation, Query, Resolver } from 'type-graphql';
 import { Repository } from 'typeorm';
 import { InjectRepository } from 'typeorm-typedi-extensions';
-import { BaseResolver, Context } from 'warthog';
+import { BaseContext, BaseResolver } from 'warthog';
 
 import {
   UserCreateInput,
+  UserUpdateArgs,
   UserWhereArgs,
   UserWhereInput,
-  UserUpdateArgs,
   UserWhereUniqueInput
-} from '../../../generated/classes';
-import { User } from './user.entity';
+} from '../generated';
+
+import { User } from './user.model';
 
 @Resolver(User)
 export class UserResolver extends BaseResolver<User> {
   constructor(@InjectRepository(User) private readonly userRepository: Repository<User>) {
-    super(User, userRepository);
-    // or else it complains about userRepository not being used
-    console.log.call(null, typeof this.userRepository);
+    super(User, userRepository as any);
   }
 
   @Query(returns => [User])
   async users(
     @Args() { where, orderBy, limit, offset }: UserWhereArgs,
-    @Ctx() ctx: Context,
+    @Ctx() ctx: BaseContext,
     info: GraphQLResolveInfo
   ): Promise<User[]> {
     return this.find<UserWhereInput>(where, orderBy, limit, offset);
@@ -36,12 +35,15 @@ export class UserResolver extends BaseResolver<User> {
   }
 
   @Mutation(returns => User)
-  async createUser(@Arg('data') data: UserCreateInput, @Ctx() ctx: Context): Promise<User> {
+  async createUser(@Arg('data') data: UserCreateInput, @Ctx() ctx: BaseContext): Promise<User> {
     return this.create(data, ctx.user.id);
   }
 
   @Mutation(returns => User)
-  async updateUser(@Args() { data, where }: UserUpdateArgs, @Ctx() ctx: Context): Promise<User> {
+  async updateUser(
+    @Args() { data, where }: UserUpdateArgs,
+    @Ctx() ctx: BaseContext
+  ): Promise<User> {
     return this.update(data, where, ctx.user.id);
   }
 }

@@ -2,10 +2,11 @@ import 'reflect-metadata';
 
 import * as dotenv from 'dotenv';
 import { Container } from 'typedi';
+
 dotenv.config();
 
-import { getApp } from '../src/app';
 import { Binding } from '../generated/binding';
+import { getApp } from '../src/app';
 
 async function bootstrap() {
   const app = getApp({ container: Container }, { logging: false });
@@ -15,7 +16,10 @@ async function bootstrap() {
   // i.e. you can dot into your API:  binding.query.us___ and it will autofill
   const binding = ((await app.getBinding()) as unknown) as Binding; // tslint:disable-line
 
-  let users = await binding.query.users({ limit: 5, orderBy: 'createdAt_DESC' }, `{ id firstName email}`);
+  const users = await binding.query.users(
+    { limit: 5, orderBy: 'createdAt_DESC' },
+    `{ id firstName email}`
+  );
 
   console.log('users', users);
 

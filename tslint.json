@@ -16,11 +16,12 @@
     "member-access": [false],
     "no-submodule-imports": false,
     "no-unused-variable": false,
-    "no-implicit-dependencies": [true, "dev"],
+    "no-implicit-dependencies": false, // For now, just use the packaged version of typeorm, type-graphql, typedi.  If we have multiple versions it causes a lot of issues
     "no-var-keyword": false,
+    "no-console": false,
     "no-floating-promises": false
   },
   "linterOptions": {
-    "exclude": ["node_modules/**/*", "*/**/*.js", "*/**/generated/*.ts", "src/migration/*", "generated"]
+    "exclude": ["node_modules/**/*", "*/**/*.js", "generated/*.ts", "src/migration/*", "generated"]
   }
 }
