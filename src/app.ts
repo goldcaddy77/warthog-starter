@@ -1,8 +1,8 @@
-import "reflect-metadata";
+import 'reflect-metadata';
 
-import { Request } from "express";
-import { Container } from "typedi";
-import { App, BaseContext } from "warthog";
+import { Request } from 'express';
+import { Container } from 'typedi';
+import { App, BaseContext } from 'warthog';
 
 interface Context extends BaseContext {
   user: {
@@ -20,15 +20,9 @@ export function getApp(appOptions = {}, dbOptions = {}) {
       context: (request: Request) => {
         return {
           user: {
-            email: "admin@test.com",
-            id: "abc12345",
-            permissions: [
-              "user:read",
-              "user:update",
-              "user:create",
-              "user:delete",
-              "photo:delete"
-            ]
+            email: 'admin@test.com',
+            id: 'abc12345',
+            permissions: ['user:read', 'user:update', 'user:create', 'user:delete', 'photo:delete']
           }
         };
       },

@@ -29,7 +29,9 @@ async function seedDatabase() {
       .substring(8, 13);
     const firstName = Faker.name.firstName();
     const lastName = Faker.name.lastName();
-    const email = `${firstName.substr(0, 1).toLowerCase()}${lastName.toLowerCase()}-${random}@fakeemail.com`;
+    const email = `${firstName
+      .substr(0, 1)
+      .toLowerCase()}${lastName.toLowerCase()}-${random}@fakeemail.com`;
     const status = Math.random() > 0.2 ? UserStatus.ACTIVE : UserStatus.INACTIVE;
 
     try {

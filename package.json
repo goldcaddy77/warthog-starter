@@ -14,6 +14,7 @@
     "db:seed:dev": "ts-node tools/seed.ts",
     "list:users": "ts-node ./tools/list-users.ts",
     "playground:open": "open http://localhost:$(dotenv -p APP_PORT)/graphql",
+    "prettier": "prettier ./{src,test,tools}/**/*.ts --write",
     "start": "DEBUG=warthog* run-p start:ts playground:open",
     "start:ts": "ts-node-dev --type-check src/index.ts",
     "test": "jest --detectOpenHandles --verbose --coverage",
@@ -92,5 +93,9 @@
       "/node_modules/",
       "\\.test\\.ts$"
     ]
+  },
+  "prettier": {
+    "printWidth": 100,
+    "singleQuote": true
   }
 }

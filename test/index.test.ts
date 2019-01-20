@@ -1,17 +1,17 @@
-import "reflect-metadata";
+import 'reflect-metadata';
 
-import * as dotenv from "dotenv";
-import { GraphQLError } from "graphql";
-import { Container } from "typedi";
+import * as dotenv from 'dotenv';
+import { GraphQLError } from 'graphql';
+import { Container } from 'typedi';
 
 dotenv.config();
 
 // Needs to happen before you import any models
-import { getApp } from "../src/app";
+import { getApp } from '../src/app';
 const app = getApp({ container: Container }, { logging: false });
 
-import { Binding } from "../generated/binding";
-import { User, UserStatus } from "../src/user.model";
+import { Binding } from '../generated/binding';
+import { User, UserStatus } from '../src/user.model';
 
 let binding: Binding;
 let testUser: any;
@@ -49,14 +49,11 @@ afterAll(async done => {
   done();
 });
 
-describe("Users", () => {
-  test("find user by id", async done => {
+describe('Users', () => {
+  test('find user by id', async done => {
     expect(testUser).toBeTruthy();
 
-    const user = await binding.query.user(
-      { where: { id: String(testUser.id) } },
-      `{ id }`
-    );
+    const user = await binding.query.user({ where: { id: String(testUser.id) } }, `{ id }`);
 
     // If user tries to access a private field, it will throw a console error.
     // We should make sure we always fail tests console errors are encountered
@@ -66,9 +63,9 @@ describe("Users", () => {
     done();
   });
 
-  test("createdAt sort", async done => {
+  test('createdAt sort', async done => {
     const users = await binding.query.users(
-      { limit: 1, orderBy: "createdAt_DESC" },
+      { limit: 1, orderBy: 'createdAt_DESC' },
       `{ id firstName}`
     );
 
@@ -79,8 +76,8 @@ describe("Users", () => {
     done();
   });
 
-  test("uniqueness failure", async done => {
-    let error: GraphQLError = new GraphQLError("");
+  test('uniqueness failure', async done => {
+    let error: GraphQLError = new GraphQLError('');
     try {
       await binding.mutation.createUser(
         {
@@ -98,7 +95,7 @@ describe("Users", () => {
     }
     // Note: this test can also surface if you have 2 separate versions of GraphQL installed (which is bad)
     expect(error).toBeInstanceOf(GraphQLError);
-    expect(error.message).toContain("duplicate");
+    expect(error.message).toContain('duplicate');
     done();
   });
 });
