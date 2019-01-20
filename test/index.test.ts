@@ -6,18 +6,18 @@ import { Container } from "typedi";
 
 dotenv.config();
 
-import { Binding } from "../generated/binding";
-
+// Needs to happen before you import any models
 import { getApp } from "../src/app";
+const app = getApp({ container: Container }, { logging: false });
 
-let app: any;
+import { Binding } from "../generated/binding";
+import { User, UserStatus } from "../src/user.model";
+
 let binding: Binding;
 let testUser: any;
 
 beforeAll(async done => {
   console.error = jest.fn();
-
-  app = getApp({ container: Container }, { logging: false });
 
   await app.start();
   binding = ((await app.getBinding()) as unknown) as Binding; // TODO: clean this up
@@ -25,16 +25,17 @@ beforeAll(async done => {
   const key = new Date().getTime();
 
   try {
-    testUser = await binding.mutation.createUser(
+    testUser = (await binding.mutation.createUser(
       {
         data: {
           email: `goldcaddy${key}@gmail.com`,
           firstName: `first ${key}`,
-          lastName: `last ${key}`
+          lastName: `last ${key}`,
+          status: UserStatus.ACTIVE
         }
       },
-      `{ id email firstName lastName }`
-    );
+      `{ id email firstName lastName status }`
+    )) as User;
   } catch (error) {
     throw new Error(error);
   }
@@ -84,9 +85,10 @@ describe("Users", () => {
       await binding.mutation.createUser(
         {
           data: {
-            email: testUser.email!,
-            firstName: testUser.firstName!,
-            lastName: testUser.lastName!
+            email: testUser.email,
+            firstName: testUser.firstName,
+            lastName: testUser.lastName,
+            status: testUser.status
           }
         },
         `{ id email createdAt createdById }`
