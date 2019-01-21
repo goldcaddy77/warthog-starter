@@ -10,14 +10,14 @@ import { getApp } from '../src/app';
 import { UserStatus } from '../src/user.model';
 
 if (process.env.NODE_ENV !== 'development') {
-  throw 'Seeding only available in development environment';
+  throw new Error('Seeding only available in development environment');
   process.exit(1);
 }
 
 const NUM_USERS = 100;
 
 async function seedDatabase() {
-  const app = getApp({ container: Container });
+  const app = getApp({ container: Container, openPlayground: false });
   await app.start();
 
   const binding = await app.getBinding();
