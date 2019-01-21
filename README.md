@@ -1,4 +1,4 @@
-# warthog-example
+# warthog-starter
 
 This is a minimal example of using the [Warthog](https://github.com/goldcaddy77/warthog) GraphQL API library.
 
@@ -10,4 +10,10 @@ To get things set up, run `yarn bootstrap`.
 
 Run `yarn start` to run the server.
 
-Then run some queries and mutations in GraphQL Playground. See the example GraphQL in the [examples.gql](./examples.gql) file
+## Using GraphQL Playground
+
+When you run `yarn start`, it will open [graphql-playground](https://github.com/prisma/graphql-playground).  When in the playground, you can issue queries and mutations against the API.  Try some of the examples in [examples.gql](./examples.gql).
+
+## Running tests
+
+Run `yarn test` to run tests
