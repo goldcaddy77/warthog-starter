@@ -13,9 +13,9 @@
     "db:drop": "dropdbjs $(dotenv -p TYPEORM_DATABASE) 2>&1 || :",
     "db:seed:dev": "ts-node tools/seed.ts",
     "list:users": "ts-node ./tools/list-users.ts",
-    "playground:open": "open http://localhost:$(dotenv -p APP_PORT)/graphql",
+    "playground": "open http://localhost:$(dotenv -p APP_PORT)/graphql",
     "prettier": "prettier ./{src,test,tools}/**/*.ts --write",
-    "start": "DEBUG=warthog* run-p start:ts playground:open",
+    "start": "DEBUG=warthog* yarn start:ts",
     "start:ts": "ts-node-dev --type-check src/index.ts",
     "test": "jest --detectOpenHandles --verbose --coverage",
     "watch:ts": "nodemon -e ts,graphql -x ts-node --type-check src/index.ts"
@@ -57,7 +57,7 @@
     "pgtools": "^0.3.0",
     "reflect-metadata": "^0.1.13",
     "ts-node": "^7.0.1",
-    "warthog": "^1.8.2"
+    "warthog": "^1.9.1"
   },
   "devDependencies": {
     "@types/dotenv": "^6.1.0",
