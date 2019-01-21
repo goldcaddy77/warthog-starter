@@ -12,7 +12,7 @@
     "db:create": "createdbjs $(dotenv -p TYPEORM_DATABASE) 2>&1 || :",
     "db:drop": "dropdbjs $(dotenv -p TYPEORM_DATABASE) 2>&1 || :",
     "db:seed:dev": "ts-node tools/seed.ts",
-    "lint": "tslint --fix -t stylish -c ./tslint.json -p ./tsconfig.json ",
+    "lint": "tslint --fix -t stylish -c ./tslint.json -p ./tsconfig.json",
     "list:users": "ts-node ./tools/list-users.ts",
     "playground": "open http://localhost:$(dotenv -p APP_PORT)/graphql",
     "prettier": "prettier ./{src,test,tools}/**/*.ts --write",
@@ -86,6 +86,7 @@
     "transform": {
       ".ts": "ts-jest"
     },
+    "testEnvironment": "node",
     "testRegex": "\\.test\\.ts$",
     "moduleFileExtensions": [
       "js",
@@ -94,7 +95,8 @@
     "coveragePathIgnorePatterns": [
       "/node_modules/",
       "\\.test\\.ts$"
-    ]
+    ],
+    "setupTestFrameworkScriptFile": "./test/setupTests.ts"
   },
   "prettier": {
     "printWidth": 100,

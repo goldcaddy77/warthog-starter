@@ -1,11 +1,10 @@
-import 'reflect-metadata';
-
-import * as dotenv from 'dotenv';
+// This is an integration test that uses a graphql-binding to test the APIs by issuing
+// calls to the actual server. We should determine how we want to distinguish between the
+// different types of tests.
 import { GraphQLError } from 'graphql';
 import { Container } from 'typedi';
 
-dotenv.config();
-
+// TODO: If we create an integration test harness, we could make app a global and also load dotenv as part of the setup.
 // Needs to happen before you import any models
 import { getApp } from '../src/app';
 const app = getApp({ container: Container }, { logging: false });
@@ -15,27 +14,22 @@ import { User, UserStatus } from '../src/user.model';
 
 let binding: Binding;
 let testUser: any;
+const key = new Date().getTime().toString();
 
 beforeAll(async done => {
+  // TODO: this masks errors when they happen, we should figure out how to spy and call through
   console.error = jest.fn();
 
-  await app.start();
+  try {
+    await app.start();
+  } catch (error) {
+    throw new Error(error);
+  }
+
   binding = ((await app.getBinding()) as unknown) as Binding; // TODO: clean this up
 
-  const key = new Date().getTime();
-
   try {
-    testUser = (await binding.mutation.createUser(
-      {
-        data: {
-          email: `goldcaddy${key}@gmail.com`,
-          firstName: `first ${key}`,
-          lastName: `last ${key}`,
-          status: UserStatus.ACTIVE
-        }
-      },
-      `{ id email firstName lastName status }`
-    )) as User;
+    testUser = await createTestUser();
   } catch (error) {
     throw new Error(error);
   }
@@ -79,17 +73,7 @@ describe('Users', () => {
   test('uniqueness failure', async done => {
     let error: GraphQLError = new GraphQLError('');
     try {
-      await binding.mutation.createUser(
-        {
-          data: {
-            email: testUser.email,
-            firstName: testUser.firstName,
-            lastName: testUser.lastName,
-            status: testUser.status
-          }
-        },
-        `{ id email createdAt createdById }`
-      );
+      await createTestUser();
     } catch (e) {
       error = e as GraphQLError;
     }
@@ -99,3 +83,17 @@ describe('Users', () => {
     done();
   });
 });
+
+async function createTestUser() {
+  return binding.mutation.createUser(
+    {
+      data: {
+        email: `goldcaddy${key}@gmail.com`,
+        firstName: `first ${key}`,
+        lastName: `last ${key}`,
+        status: UserStatus.ACTIVE
+      }
+    },
+    `{ id email firstName lastName status }`
+  );
+}
