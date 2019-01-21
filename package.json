@@ -12,6 +12,7 @@
     "db:create": "createdbjs $(dotenv -p TYPEORM_DATABASE) 2>&1 || :",
     "db:drop": "dropdbjs $(dotenv -p TYPEORM_DATABASE) 2>&1 || :",
     "db:seed:dev": "ts-node tools/seed.ts",
+    "lint": "tslint --fix -t stylish -c ./tslint.json -p ./tsconfig.json ",
     "list:users": "ts-node ./tools/list-users.ts",
     "playground": "open http://localhost:$(dotenv -p APP_PORT)/graphql",
     "prettier": "prettier ./{src,test,tools}/**/*.ts --write",
@@ -78,7 +79,8 @@
     "ts-node-dev": "^1.0.0-pre.32",
     "tslint": "^5.11.0",
     "tslint-config-prettier": "^1.17.0",
-    "typescript": "3.2.2"
+    "typescript": "3.2.2",
+    "typestrict": "^1.0.2"
   },
   "jest": {
     "transform": {
