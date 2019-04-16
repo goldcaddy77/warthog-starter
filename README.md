@@ -4,11 +4,11 @@ This is a minimal example of using the [Warthog](https://github.com/goldcaddy77/
 
 ## Setup
 
-To get things set up, run `yarn bootstrap`.
+To get things set up, start postgres with `yarn postgres:start`, then `yarn bootstrap` in another tab.
 
 ## Running the server
 
-Run `yarn start` to run the server.
+Start postgres with `yarn postgres:start`, then `yarn start` to run the server.
 
 ## Using GraphQL Playground
 

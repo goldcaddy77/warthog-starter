@@ -1,0 +1,17 @@
+version: '3.6'
+services:
+  postgres:
+    image: postgres
+    restart: always
+    volumes:
+      - ./db_data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    # To set password, use, etc. Default is u/p/db: postgres/none/postgres
+    #environment:
+    #  POSTGRES_DB: warthog-example
+    #  POSTGRES_PASSWORD: testpassword
+    #  POSTGRES_USER: postgres
+
+volumes:
+  db_data:

@@ -30,6 +30,7 @@ dist
 .webpack
 .env
 coverage
+db_data
 
 # Temp dir
 tmp

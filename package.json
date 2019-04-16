@@ -8,7 +8,7 @@
     "url": "https://github.com/goldcaddy77"
   },
   "scripts": {
-    "bootstrap": "cp .env.example .env && yarn && yarn db:create && yarn db:seed:dev",
+    "bootstrap": "cp .env.example .env && yarn && yarn db:create && NODE_ENV=development yarn db:seed:dev",
     "db:create": "createdbjs $(dotenv -p TYPEORM_DATABASE) 2>&1 || :",
     "db:drop": "dropdbjs $(dotenv -p TYPEORM_DATABASE) 2>&1 || :",
     "db:seed:dev": "ts-node tools/seed.ts",
@@ -19,7 +19,9 @@
     "start": "DEBUG=warthog* yarn start:ts",
     "start:ts": "ts-node-dev --type-check src/index.ts",
     "test": "jest --detectOpenHandles --verbose --coverage",
-    "watch:ts": "nodemon -e ts,graphql -x ts-node --type-check src/index.ts"
+    "watch:ts": "nodemon -e ts,graphql -x ts-node --type-check src/index.ts",
+    "postgres:start": "cd postgres && docker-compose up",
+    "postgres:clean": "docker stop $(docker ps -a -q); docker rm $(docker ps -a -q); docker volume prune -f"
   },
   "husky": {
     "hooks": {
