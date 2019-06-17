@@ -43,6 +43,3 @@ tmp
 !.vscode/extensions.json
 
 .audit.json
-
-# Generated
-generated/*
