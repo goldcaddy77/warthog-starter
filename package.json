@@ -20,7 +20,7 @@
     "prettier": "prettier ./{src,test,tools}/**/*.ts --write",
     "start": "DEBUG=warthog* yarn start:ts",
     "start:ts": "ts-node-dev --type-check src/index.ts",
-    "test": "jest --detectOpenHandles --verbose --coverage",
+    "test": "jest --verbose --coverage",
     "watch:ts": "nodemon -e ts,graphql -x ts-node --type-check src/index.ts"
   },
   "husky": {
@@ -95,7 +95,6 @@
     "transform": {
       ".ts": "ts-jest"
     },
-    "testEnvironment": "node",
     "testRegex": "\\.test\\.ts$",
     "moduleFileExtensions": [
       "js",
