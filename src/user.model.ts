@@ -1,4 +1,6 @@
-import { BaseModel, EmailField, EnumField, Model, StringField } from 'warthog';
+import { BaseModel, EmailField, EnumField, Model, OneToMany, StringField } from 'warthog';
+
+import { Post } from './post.model';
 
 // Note: this must be exported and in the same file where it's attached with @EnumField
 // Also - must use string enums
@@ -19,4 +21,7 @@ export class User extends BaseModel {
   status?: UserStatus;
 
   @EmailField() email?: string;
+
+  @OneToMany(() => Post, (post: Post) => post.user)
+  posts?: Post[];
 }
