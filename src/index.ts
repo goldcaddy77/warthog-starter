@@ -1,13 +1,13 @@
 import 'reflect-metadata';
 
-import * as dotenv from 'dotenv';
-dotenv.config();
+import { loadConfig } from './config';
+import { getServer } from './server';
 
-import { getApp } from './app';
+async function bootstrap() {
+  loadConfig();
 
-async function bootstrap(): Promise<any> {
-  const app = getApp();
-  return app.start();
+  const server = getServer();
+  await server.start();
 }
 
 bootstrap().catch((error: Error) => {

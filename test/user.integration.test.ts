@@ -1,3 +1,5 @@
+import 'reflect-metadata';
+
 // This is an integration test that uses a graphql-binding to test the APIs by issuing
 // calls to the actual server. We should determine how we want to distinguish between the
 // different types of tests.
@@ -6,27 +8,26 @@ import { Container } from 'typedi';
 
 // TODO: If we create an integration test harness, we could make app a global and also load dotenv as part of the setup.
 // Needs to happen before you import any models
-import { getApp } from '../src/app';
-const app = getApp({ container: Container }, { logging: false });
-
 import { Binding } from '../generated/binding';
+import { loadConfig } from '../src/config';
+import { getServer } from '../src/server';
 import { User, UserStatus } from '../src/user.model';
 
 let binding: Binding;
 let testUser: any;
 const key = new Date().getTime().toString();
 
+let server: any;
+
 beforeAll(async done => {
+  loadConfig();
   // TODO: this masks errors when they happen, we should figure out how to spy and call through
   console.error = jest.fn();
 
-  try {
-    await app.start();
-  } catch (error) {
-    throw new Error(error);
-  }
+  server = getServer({ logging: false });
+  await server.start();
 
-  binding = ((await app.getBinding()) as unknown) as Binding; // TODO: clean this up
+  binding = ((await server.getBinding()) as unknown) as Binding; // TODO: clean this up
 
   try {
     testUser = await createTestUser();
@@ -39,7 +40,7 @@ beforeAll(async done => {
 
 afterAll(async done => {
   (console.error as any).mockRestore();
-  await app.stop();
+  await server.stop();
   done();
 });
 
