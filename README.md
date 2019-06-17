@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="http://warthog.dev/"><img src="https://www.github.com/goldcaddy77/warthog/blob/master/img/warthog-logo.png?raw=true" width="400" alt="Warthog Logo"></a>
+  <a href="http://warthog.dev/"><img src="./img/warthog-logo.png" width="400" alt="Warthog Logo"></a>
 </p>
 
 <p align="center">
