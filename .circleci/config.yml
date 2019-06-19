@@ -15,8 +15,11 @@ jobs:
           name: dependencies
           command: yarn install --frozen-lockfile
       - run:
-          name: build
+          name: lint
           command: yarn lint
+      - run:
+          name: config
+          command: cp .env.example .env
       - run:
           name: build
           command: yarn build
