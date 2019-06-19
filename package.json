@@ -10,7 +10,6 @@
   "scripts": {
     "bootstrap": "cp .env.example .env && yarn && yarn db:create && yarn generate:code && yarn db:seed:dev",
     "build": "yarn tsc",
-    "check": "yarn lint",
     "db:create": "createdbjs $(dotenv -p TYPEORM_DATABASE) 2>&1 || :",
     "db:drop": "dropdbjs $(dotenv -p TYPEORM_DATABASE) 2>&1 || :",
     "db:seed:dev": "ts-node tools/seed.ts",
