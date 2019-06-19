@@ -10,7 +10,6 @@ import { UserStatus } from '../src/user.model';
 
 if (process.env.NODE_ENV !== 'development') {
   throw new Error('Seeding only available in development environment');
-  process.exit(1);
 }
 
 async function seedDatabase() {
@@ -26,7 +25,7 @@ async function seedDatabase() {
   try {
     binding = ((await server.getBinding()) as unknown) as Binding;
   } catch (error) {
-    console.error(error);
+    Logger.error(error);
 
     return process.exit(1);
   }
@@ -43,11 +42,10 @@ async function seedDatabase() {
       `{ id firstName }`
     );
 
-    console.log(user);
+    Logger.info(user);
 
     const BATCH_SIZE = 250;
 
-    // tslint:disable-next-line:prefer-for-of
     let postBuffer: any[] = [];
     let batchNumber = 0;
     for (let i = 0; i < 30_000; i++) {
@@ -57,7 +55,7 @@ async function seedDatabase() {
       });
 
       if (postBuffer.length >= BATCH_SIZE) {
-        console.log(`Writing posts batch ${batchNumber++}`);
+        Logger.info(`Writing posts batch ${batchNumber++}`);
         await binding.mutation.createManyPosts(
           {
             data: postBuffer
@@ -76,10 +74,10 @@ async function seedDatabase() {
 
 seedDatabase()
   .then(result => {
-    Logger.log(result);
+    Logger.info(result);
     return process.exit(0);
   })
   .catch(err => {
-    console.log(err);
+    Logger.error(err);
     return process.exit(1);
   });
