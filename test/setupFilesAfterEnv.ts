@@ -8,7 +8,7 @@ dotenv.config();
 
 // If debugging in VSCode, set the timeout to
 const timeoutDebug = 60 * 60 * 1000; // one hour
-const timeoutRegular = 5000; // 5 seconds
+const timeoutRegular = 25000; // 5 seconds
 const timeout = process.env.NODE_ENV === 'test' ? timeoutDebug : timeoutRegular;
 
 jest.setTimeout(timeout);

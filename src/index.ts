@@ -1,19 +1,21 @@
 import 'reflect-metadata';
 
-import { loadConfig } from './config';
+import { loadConfig } from '../src/config';
+import { Logger } from '../src/logger';
+
 import { getServer } from './server';
 
 async function bootstrap() {
-  loadConfig();
+  await loadConfig();
 
   const server = getServer();
   await server.start();
 }
 
 bootstrap().catch((error: Error) => {
-  console.error(error);
+  Logger.error(error);
   if (error.stack) {
-    console.error(error.stack.split('\n'));
+    Logger.error(error.stack.split('\n'));
   }
   process.exit(1);
 });

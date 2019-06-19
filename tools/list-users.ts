@@ -1,36 +1,35 @@
 import 'reflect-metadata';
 
-import * as dotenv from 'dotenv';
-import { Container } from 'typedi';
-
-dotenv.config();
-
 import { Binding } from '../generated/binding';
-import { getApp } from '../src/app';
+import { loadConfig } from '../src/config';
+import { Logger } from '../src/logger';
+import { getServer } from '../src/server';
 
 async function bootstrap() {
-  const app = getApp({ container: Container }, { logging: false });
-  await app.start();
+  loadConfig();
+
+  const server = getServer({ introspection: true, openPlayground: false }, { logging: false });
+  await server.start();
 
   // Note: this binding is type-safe from your generated API.
   // i.e. you can dot into your API:  binding.query.us___ and it will autofill
-  const binding = ((await app.getBinding()) as unknown) as Binding; // tslint:disable-line
+  const binding = ((await server.getBinding()) as unknown) as Binding;
 
   const users = await binding.query.users(
     { limit: 5, orderBy: 'createdAt_DESC' },
     `{ id firstName email}`
   );
 
-  console.log('users', users);
+  Logger.info('users', users);
 
-  app.stop();
+  server.stop();
 }
 
 bootstrap().catch((error: Error) => {
-  console.log('Caught Error!!!');
-  console.error(error);
+  Logger.info('Caught Error!!!');
+  Logger.error(error);
   if (error.stack) {
-    console.error(error.stack!.split('\n').slice(0, 20));
+    Logger.error(error.stack.split('\n').slice(0, 20));
   }
   process.exit(1);
 });

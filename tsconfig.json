@@ -20,7 +20,6 @@
     "strict": true,
     "strictNullChecks": true,
     "types": ["jest", "isomorphic-fetch", "node"]
-
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules/**/*", "generated/**/*", "tools/**/*"]

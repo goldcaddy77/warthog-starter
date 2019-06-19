@@ -43,3 +43,6 @@ tmp
 !.vscode/extensions.json
 
 .audit.json
+
+# Test DB
+warthog.sqlite.tmp

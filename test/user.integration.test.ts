@@ -1,17 +1,19 @@
+/* eslint-disable no-console */
+
 import 'reflect-metadata';
 
 // This is an integration test that uses a graphql-binding to test the APIs by issuing
 // calls to the actual server. We should determine how we want to distinguish between the
 // different types of tests.
 import { GraphQLError } from 'graphql';
-import { Container } from 'typedi';
 
 // TODO: If we create an integration test harness, we could make app a global and also load dotenv as part of the setup.
 // Needs to happen before you import any models
 import { Binding } from '../generated/binding';
 import { loadConfig } from '../src/config';
+import { Logger } from '../src/logger';
 import { getServer } from '../src/server';
-import { User, UserStatus } from '../src/user.model';
+import { UserStatus } from '../src/user.model';
 
 let binding: Binding;
 let testUser: any;
@@ -21,10 +23,15 @@ let server: any;
 
 beforeAll(async done => {
   loadConfig();
+  // Temporary until https://github.com/goldcaddy77/warthog/pull/130 is merged
+  process.env.TYPEORM_DATABASE_TYPE = 'sqlite';
+  process.env.TYPEORM_SYNCHRONIZE = 'true';
+  process.env.TYPEORM_DATABASE = 'warthog.sqlite.tmp';
+
   // TODO: this masks errors when they happen, we should figure out how to spy and call through
   console.error = jest.fn();
 
-  server = getServer({ logging: false });
+  server = getServer({ mockDBConnection: true }, { logging: false });
   await server.start();
 
   binding = ((await server.getBinding()) as unknown) as Binding; // TODO: clean this up
@@ -32,7 +39,8 @@ beforeAll(async done => {
   try {
     testUser = await createTestUser();
   } catch (error) {
-    throw new Error(error);
+    Logger.logGraphQLError(error);
+    process.exit(1);
   }
 
   done();
@@ -80,7 +88,8 @@ describe('Users', () => {
     }
     // Note: this test can also surface if you have 2 separate versions of GraphQL installed (which is bad)
     expect(error).toBeInstanceOf(GraphQLError);
-    expect(error.message).toContain('duplicate');
+    expect(error.message).toContain('constraint');
+
     done();
   });
 });
@@ -98,3 +107,5 @@ async function createTestUser() {
     `{ id email firstName lastName status }`
   );
 }
+
+/* eslint-enable no-console */
