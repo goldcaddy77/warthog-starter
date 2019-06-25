@@ -8,15 +8,16 @@
     "url": "https://github.com/goldcaddy77"
   },
   "scripts": {
-    "bootstrap": "cp .env.example .env && yarn && yarn db:create && yarn generate:code && yarn db:seed:dev",
+    "bootstrap": "cp .env.example .env && yarn && yarn db:create && yarn codegen && yarn db:seed:dev",
     "build": "yarn tsc",
-    "db:create": "createdbjs $(dotenv -p TYPEORM_DATABASE) 2>&1 || :",
-    "db:drop": "dropdbjs $(dotenv -p TYPEORM_DATABASE) 2>&1 || :",
+    "check:code": "tsc --noEmit && yarn lint && prettier ./{src,test,tools}/**/*.ts --write",
+    "codegen": "warthog codegen",
+    "db:create": "warthog db:create",
+    "db:drop": "warthog db:drop",
     "db:seed:dev": "ts-node tools/seed.ts",
-    "generate:code": "ts-node tools/generate.ts",
     "lint": "eslint './+(src|test|tools)/**/*.{js,ts}' --fix",
     "list:users": "ts-node ./tools/list-users.ts",
-    "playground": "open http://localhost:$(dotenv -p APP_PORT)/graphql",
+    "playground": "warthog playground",
     "prettier": "prettier ./{src,test,tools}/**/*.ts --write",
     "start": "DEBUG=warthog* yarn start:ts",
     "start:ts": "ts-node-dev --type-check src/index.ts",
@@ -66,7 +67,7 @@
     "type-graphql": "^0.17.4",
     "typedi": "^0.8.0",
     "typeorm-typedi-extensions": "^0.2.3",
-    "warthog": "^1.28.0"
+    "warthog": "^1.32.8"
   },
   "devDependencies": {
     "@types/dotenv": "^6.1.0",
@@ -93,8 +94,7 @@
     "ts-jest": "^24.0.2",
     "ts-node": "^7.0.1",
     "ts-node-dev": "^1.0.0-pre.32",
-    "typescript": "3.2.2",
-    "typestrict": "^1.0.2"
+    "typescript": "3.2.2"
   },
   "jest": {
     "globals": {

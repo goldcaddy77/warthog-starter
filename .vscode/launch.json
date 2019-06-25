@@ -22,6 +22,19 @@
       "env": {
         "NODE_ENV": "test"
       }
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Warthog CLI",
+      "cwd": "${workspaceRoot}",
+      "program": "${workspaceRoot}/node_modules/.bin/warthog",
+      "args": ["codegen"],
+      // "runtimeArgs": ["--nolazy"],
+      "console": "internalConsole",
+      "env": {
+        "NODE_ENV": "test"
+      }
     }
   ]
 }
