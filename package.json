@@ -67,7 +67,7 @@
     "type-graphql": "^0.17.4",
     "typedi": "^0.8.0",
     "typeorm-typedi-extensions": "^0.2.3",
-    "warthog": "^1.32.8"
+    "warthog": "^1.32.9"
   },
   "devDependencies": {
     "@types/dotenv": "^6.1.0",
