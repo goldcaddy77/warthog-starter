@@ -72,9 +72,6 @@ export type UserOrderByInput =   'createdAt_ASC' |
   'email_ASC' |
   'email_DESC'
 
-export type UserStatus =   'ACTIVE' |
-  'INACTIVE'
-
 export interface BaseWhereInput {
   id_eq?: String | null
   id_in?: String[] | String | null
@@ -147,14 +144,14 @@ export interface PostWhereUniqueInput {
 export interface UserCreateInput {
   firstName: String
   lastName?: String | null
-  status: UserStatus
+  status: String
   email: String
 }
 
 export interface UserUpdateInput {
   firstName?: String | null
   lastName?: String | null
-  status?: UserStatus | null
+  status?: String | null
   email?: String | null
 }
 
@@ -190,8 +187,11 @@ export interface UserWhereInput {
   lastName_startsWith?: String | null
   lastName_endsWith?: String | null
   lastName_in?: String[] | String | null
-  status_eq?: UserStatus | null
-  status_in?: UserStatus[] | UserStatus | null
+  status_eq?: String | null
+  status_contains?: String | null
+  status_startsWith?: String | null
+  status_endsWith?: String | null
+  status_in?: String[] | String | null
   email_eq?: String | null
   email_contains?: String | null
   email_startsWith?: String | null
@@ -270,7 +270,7 @@ export interface User extends BaseGraphQLObject {
   version: Int
   firstName: String
   lastName?: String | null
-  status: UserStatus
+  status: String
   email: String
   posts?: Array<Post> | null
 }
@@ -292,7 +292,7 @@ export type ID_Input = string | number
 export type ID_Output = string
 
 /*
-The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. 
+The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.
 */
 export type Int = number
 

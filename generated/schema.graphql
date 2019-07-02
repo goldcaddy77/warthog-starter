@@ -168,7 +168,7 @@ type User implements BaseGraphQLObject {
   version: Int!
   firstName: String!
   lastName: String
-  status: UserStatus!
+  status: String!
   email: String!
   posts: [Post!]
 }
@@ -176,7 +176,7 @@ type User implements BaseGraphQLObject {
 input UserCreateInput {
   firstName: String!
   lastName: String
-  status: UserStatus!
+  status: String!
   email: String!
 }
 
@@ -197,15 +197,10 @@ enum UserOrderByInput {
   email_DESC
 }
 
-enum UserStatus {
-  ACTIVE
-  INACTIVE
-}
-
 input UserUpdateInput {
   firstName: String
   lastName: String
-  status: UserStatus
+  status: String
   email: String
 }
 
@@ -241,8 +236,11 @@ input UserWhereInput {
   lastName_startsWith: String
   lastName_endsWith: String
   lastName_in: [String!]
-  status_eq: UserStatus
-  status_in: [UserStatus!]
+  status_eq: String
+  status_contains: String
+  status_startsWith: String
+  status_endsWith: String
+  status_in: [String!]
   email_eq: String
   email_contains: String
   email_startsWith: String

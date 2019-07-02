@@ -1,6 +1,6 @@
 import { BaseModel, ManyToOne, Model, StringField } from 'warthog';
 
-import { User } from './user.model';
+import { User } from '../user/user.model';
 
 @Model()
 export class Post extends BaseModel {
