@@ -12,18 +12,38 @@
   <a href="https://gitter.im/warthog-graphql/community?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=badge"><img src="https://badges.gitter.im/warthog-graphql/community.svg" alt="Join the chat at https://gitter.im/warthog-graphql/community"></a>
 </p>
 
-## Setup
+## Development Setup
 
-To get things set up, run `yarn bootstrap`.
+To get things set up in development, where everything will run in `ts-node`, run `yarn bootstrap`.
 
-## Running the server
+### Running the server
 
-Run `yarn start` to run the server.
+Run `yarn start:ts` to run the server.
 
-## Using GraphQL Playground
+### Using GraphQL Playground
 
-When you run `yarn start`, it will open [graphql-playground](https://github.com/prisma/graphql-playground).  When in the playground, you can issue queries and mutations against the API.  Try some of the examples in [examples.gql](./examples.gql).
+When you run `yarn start:ts`, it will open [graphql-playground](https://github.com/prisma/graphql-playground).  When in the playground, you can issue queries and mutations against the API.  Try some of the examples in [examples.gql](./examples.gql).
 
-## Running tests
+### Running tests
 
 Run `yarn test` to run tests
+
+## Running in Production Mode
+
+In Production mode, you'll need to build and run the compiled code.  To do this locally, run:
+
+```bash
+WARTHOG_ENV=production yarn bootstrap
+
+yarn start
+```
+
+### Generating Migrations
+
+When you're ready to check in your feature, you'll need to generate a DB migration.  This can automatically be done by running:
+
+```bash
+yarn dotenv -- ts-node ./node_modules/.bin/typeorm migration:generate -n user-and-post
+```
+
+
