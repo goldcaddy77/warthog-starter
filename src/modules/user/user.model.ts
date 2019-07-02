@@ -1,7 +1,7 @@
 // import { BaseModel, EmailField, EnumField, Model, OneToMany, StringField } from 'warthog';
 import { BaseModel, EmailField, Model, OneToMany, StringField } from 'warthog';
 
-import { Post } from './post.model';
+import { Post } from '../post/post.model';
 
 export enum UserStatus {
   ACTIVE = 'ACTIVE',

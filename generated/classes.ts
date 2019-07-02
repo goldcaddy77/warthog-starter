@@ -16,9 +16,9 @@ const { GraphQLJSONObject } = require("graphql-type-json");
 
 import { BaseWhereInput, PaginationArgs } from "warthog";
 // @ts-ignore
-import { User } from "../dist/src/user.model";
+import { User } from "../src/modules/user/user.model";
 // @ts-ignore
-import { Post } from "../dist/src/post.model";
+import { Post } from "../src/modules/post/post.model";
 
 export enum UserOrderByEnum {
   createdAt_ASC = "createdAt_ASC",

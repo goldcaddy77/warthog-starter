@@ -9,9 +9,9 @@ import {
   PostWhereArgs,
   PostWhereInput,
   PostWhereUniqueInput
-} from '../generated';
+} from '../../../generated';
 
-import { User } from './user.model';
+import { User } from '../user/user.model';
 
 import { Post } from './post.model';
 import { PostService } from './post.service';

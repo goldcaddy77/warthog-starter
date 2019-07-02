@@ -11,12 +11,14 @@
     "bootstrap": "yarn && yarn dotenv:generate && yarn db:drop && yarn db:create && yarn codegen && yarn db:seed:dev",
     "build": "yarn tsc",
     "check:code": "tsc --noEmit && yarn lint && prettier ./{src,test,tools}/**/*.ts --write",
-    "codegen": "warthog codegen",
+    "codegen": "warthog codegen && rm warthog.sqlite.tmp",
     "config:dev": "WARTHOG_ENV=development yarn dotenv:generate",
     "config:prod": "WARTHOG_ENV=production yarn dotenv:generate",
     "dotenv:generate": "dotenvi -s ${WARTHOG_ENV:-development}",
     "db:create": "warthog db:create",
     "db:drop": "warthog db:drop",
+    "db:migrate:generate": "warthog db:migrate:generate --name",
+    "db:migrate": "warthog db:migrate",
     "db:seed:dev": "ts-node tools/seed.ts",
     "lint": "eslint './+(src|test|tools)/**/*.{js,ts}' --fix",
     "list:users": "ts-node ./tools/list-users.ts",
@@ -54,7 +56,7 @@
     "dotenvi": "^0.6.0",
     "reflect-metadata": "^0.1.13",
     "typeorm": "^0.2.18",
-    "warthog": "^1.32.15"
+    "warthog": "^1.33.1"
   },
   "devDependencies": {
     "@types/dotenv": "^6.1.1",

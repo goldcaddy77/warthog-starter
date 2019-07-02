@@ -13,7 +13,7 @@ import { Binding } from '../generated/binding';
 import { loadConfig } from '../src/config';
 import { Logger } from '../src/logger';
 import { getServer } from '../src/server';
-import { UserStatus } from '../src/user.model';
+import { UserStatus } from '../src/models';
 
 let binding: Binding;
 let testUser: any;
@@ -23,10 +23,6 @@ let server: any;
 
 beforeAll(async done => {
   loadConfig();
-  // Temporary until https://github.com/goldcaddy77/warthog/pull/130 is merged
-  process.env.TYPEORM_DATABASE_TYPE = 'sqlite';
-  process.env.TYPEORM_SYNCHRONIZE = 'true';
-  process.env.TYPEORM_DATABASE = 'warthog.sqlite.tmp';
 
   // TODO: this masks errors when they happen, we should figure out how to spy and call through
   console.error = jest.fn();

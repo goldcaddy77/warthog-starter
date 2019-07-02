@@ -6,8 +6,9 @@ import { Logger } from '../src/logger';
 import { User } from '../src/models';
 import { getServer } from '../src/server';
 
-import { UserStatus } from '../src/user.model';
+import { UserStatus } from '../src/models';
 
+loadConfig();
 if (process.env.NODE_ENV !== 'development') {
   throw new Error('Seeding only available in development environment');
 }
@@ -15,8 +16,6 @@ if (process.env.NODE_ENV !== 'development') {
 async function seedDatabase() {
   // Turn off logging to seed database
   process.env.WARTHOG_DB_LOGGING = 'none';
-
-  loadConfig();
 
   const server = getServer({ introspection: true, openPlayground: false });
   await server.start();

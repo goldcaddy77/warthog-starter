@@ -43,7 +43,33 @@ yarn start
 When you're ready to check in your feature, you'll need to generate a DB migration.  This can automatically be done by running:
 
 ```bash
-yarn dotenv -- ts-node ./node_modules/.bin/typeorm migration:generate -n user-and-post
+yarn db:migrate:generate user-and-post
 ```
 
+This will drop a migration in the `db` folder.  To run it and create the schema in your DB, run:
 
+```bash
+yarn db:migrate
+```
+
+### Generating a new resource
+
+To generate a new `model`, `service` and `resolver`, run `warthog generate <model-name>`.  So for example:
+
+```bash
+warthog generate like
+```
+
+...or if you want to bootstrap with some fields:
+
+```bash
+warthog generate author name! nickname numLogins:int! verified:bool! registeredAt:date balance:float!
+```
+
+Some notes about this format:
+
+- First param (`author` above) is always the resource name (required)
+- Each subsequent item is a separate field/column that will be added to the model
+- The format is fieldName:datatype, with an optional `!` at the end to mark the field required and non-nullable (otherwise it's optional)
+- `datatype` must be one of the following: `bool`, `date`, `int`, `float`, `string`
+- If `datatype` is missing, it's assumed to be `string`

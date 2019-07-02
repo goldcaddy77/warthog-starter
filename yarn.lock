@@ -7096,10 +7096,10 @@ walker@^1.0.7, walker@~1.0.5:
   dependencies:
     makeerror "1.0.x"
 
-warthog@^1.32.15:
-  version "1.32.15"
-  resolved "https://registry.npmjs.org/warthog/-/warthog-1.32.15.tgz#4fc395fc64abcade74df45f5698451eb82265221"
-  integrity sha512-Xd+/XNt05bwveU6ECGKJgRE4l5fIDaYeVgjGayysNcO+F6UExWH7aBmdQbfql3gO3GFNJef6D4qH3OL6iyCq5A==
+warthog@^1.33.1:
+  version "1.33.1"
+  resolved "https://registry.npmjs.org/warthog/-/warthog-1.33.1.tgz#129b65e956bd8b9ee0e341ddabc53bd98f2444d0"
+  integrity sha512-B6xi1AMJvkr4ZBsu2A1BkFtUK7Yy3Hb7ycWuq9Uyt8DJG1igsW5JHT/EB42RKttQ7vgnR07EKNG3qWBEnLbEcg==
   dependencies:
     "@types/app-root-path" "^1.2.4"
     "@types/caller" "^1.0.0"
@@ -7147,6 +7147,7 @@ warthog@^1.32.15:
     open "^6.3.0"
     pg "^7.7.1"
     pgtools "^0.3.0"
+    prettier "^1.18.2"
     reflect-metadata "^0.1.12"
     shortid "^2.2.14"
     sqlite3 "^4.0.6"
