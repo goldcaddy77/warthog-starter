@@ -19,7 +19,7 @@ jobs:
           command: yarn lint
       - run:
           name: config
-          command: cp .env.example .env
+          command: yarn dotenv:generate
       - run:
           name: build
           command: yarn build
@@ -29,9 +29,9 @@ jobs:
       - run:
           name: migrate
           command: yarn db:migrate
-      - run:
-          name: deploy
-          command: git push heroku master
+      # - run:
+      #     name: deploy
+      #     command: git push heroku master
       - save_cache:
           key: *yarn_cache_key
           paths: ~/circleci/node_modules
