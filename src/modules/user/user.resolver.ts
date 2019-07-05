@@ -47,11 +47,11 @@ export class UserResolver {
     return this.service.update(data, where, userId);
   }
 
-  @Mutation(() => StandardDeleteResponse)
-  async deleteUser(
-    @Arg('where') where: UserWhereUniqueInput,
-    @UserId() userId: string
-  ): Promise<StandardDeleteResponse> {
-    return this.service.delete(where, userId);
-  }
+  // @Mutation(() => StandardDeleteResponse)
+  // async deleteUser(
+  //   @Arg('where') where: UserWhereUniqueInput,
+  //   @UserId() userId: string
+  // ): Promise<StandardDeleteResponse> {
+  //   return this.service.delete(where, userId);
+  // }
 }

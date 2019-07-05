@@ -59,11 +59,11 @@ export class PostResolver {
     return this.service.createMany(data, userId);
   }
 
-  @Mutation(() => StandardDeleteResponse)
-  async deletePost(
-    @Arg('where') where: PostWhereUniqueInput,
-    @UserId() userId: string
-  ): Promise<StandardDeleteResponse> {
-    return this.service.delete(where, userId);
-  }
+  // @Mutation(() => StandardDeleteResponse)
+  // async deletePost(
+  //   @Arg('where') where: PostWhereUniqueInput,
+  //   @UserId() userId: string
+  // ): Promise<StandardDeleteResponse> {
+  //   return this.service.delete(where, userId);
+  // }
 }

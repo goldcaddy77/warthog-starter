@@ -68,10 +68,8 @@ type Mutation {
   createPost(data: PostCreateInput!): Post!
   updatePost(data: PostUpdateInput!, where: PostWhereUniqueInput!): Post!
   createManyPosts(data: [PostCreateInput!]!): [Post!]!
-  deletePost(where: PostWhereUniqueInput!): StandardDeleteResponse!
   createUser(data: UserCreateInput!): User!
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User!
-  deleteUser(where: UserWhereUniqueInput!): StandardDeleteResponse!
 }
 
 type Post implements BaseGraphQLObject {
