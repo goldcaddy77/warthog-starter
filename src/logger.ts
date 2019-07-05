@@ -15,6 +15,18 @@ export class Logger {
     console.error(util.inspect(args, { showHidden: false, depth: null }));
   }
 
+  static debug(...args: any[]) {
+    console.debug(args);
+  }
+
+  static log(...args: any[]) {
+    console.log(args);
+  }
+
+  static warn(...args: any[]) {
+    console.warn(args);
+  }
+
   // This takes a raw GraphQL error and pulls out the relevant info
   static logGraphQLError(error: Error) {
     console.error(util.inspect(getBindingError(error), { showHidden: false, depth: null }));

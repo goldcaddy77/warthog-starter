@@ -22,7 +22,7 @@ Run `yarn start:ts` to run the server.
 
 ### Using GraphQL Playground
 
-When you run `yarn start:ts`, it will open [graphql-playground](https://github.com/prisma/graphql-playground).  When in the playground, you can issue queries and mutations against the API.  Try some of the examples in [examples.gql](./examples.gql).
+When you run `yarn start:ts`, it will open [graphql-playground](https://github.com/prisma/graphql-playground).  When in the playground, you can issue queries and mutations against the API.
 
 ### Running tests
 
@@ -73,3 +73,4 @@ Some notes about this format:
 - The format is fieldName:datatype, with an optional `!` at the end to mark the field required and non-nullable (otherwise it's optional)
 - `datatype` must be one of the following: `bool`, `date`, `int`, `float`, `string`
 - If `datatype` is missing, it's assumed to be `string`
+

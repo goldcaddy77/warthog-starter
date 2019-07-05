@@ -2,6 +2,8 @@ import 'reflect-metadata';
 
 import { BaseContext, Server } from 'warthog';
 
+import { Logger } from './logger';
+
 interface Context extends BaseContext {
   user: {
     email: string;
@@ -24,6 +26,7 @@ export function getServer(AppOptions = {}, dbOptions = {}) {
         };
       },
       introspection: true,
+      logger: Logger,
       ...AppOptions
     },
     dbOptions

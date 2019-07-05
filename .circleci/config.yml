@@ -26,6 +26,12 @@ jobs:
       - run:
           name: test
           command: yarn test
+      - run:
+          name: migrate
+          command: yarn db:migrate
+      - run:
+          name: deploy
+          command: git push heroku master
       - save_cache:
           key: *yarn_cache_key
           paths: ~/circleci/node_modules

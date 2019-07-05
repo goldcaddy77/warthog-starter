@@ -8,25 +8,28 @@
     "url": "https://github.com/goldcaddy77"
   },
   "scripts": {
-    "bootstrap": "yarn && yarn dotenv:generate && yarn db:drop && yarn db:create && yarn codegen && yarn db:seed:dev",
-    "build": "yarn tsc",
+    "bootstrap": "yarn bootstrap:dev",
+    "bootstrap:dev": "yarn && yarn build && yarn db:drop && yarn db:create && yarn db:seed",
+    "bootstrap:prod": "yarn && yarn build && yarn start:prod",
+    "build": "WARTHOG_ENV=development yarn dotenv:generate && yarn codegen && yarn compile",
     "check:code": "tsc --noEmit && yarn lint && prettier ./{src,test,tools}/**/*.ts --write",
+    "clean": "yarn db:drop && rm -rf ./node_modules ./generated ./dist",
     "codegen": "warthog codegen && rm warthog.sqlite.tmp",
-    "config:dev": "WARTHOG_ENV=development yarn dotenv:generate",
-    "config:prod": "WARTHOG_ENV=production yarn dotenv:generate",
+    "compile": "rm -rf ./dist && yarn tsc",
     "dotenv:generate": "dotenvi -s ${WARTHOG_ENV:-development}",
     "db:create": "warthog db:create",
     "db:drop": "warthog db:drop",
     "db:migrate:generate": "warthog db:migrate:generate --name",
     "db:migrate": "warthog db:migrate",
-    "db:seed:dev": "ts-node tools/seed.ts",
+    "db:seed": "ts-node tools/seed.ts",
     "lint": "eslint './+(src|test|tools)/**/*.{js,ts}' --fix",
     "list:users": "ts-node ./tools/list-users.ts",
     "playground": "warthog playground",
     "prettier": "prettier ./{src,test,tools}/**/*.ts --write",
-    "start": "yarn config:prod && node dist/src/index.js",
-    "start:ts": "yarn config:dev && ts-node-dev --type-check src/index.ts",
-    "start:ts:watch": "yarn config:dev && nodemon -e ts,graphql -x ts-node --type-check src/index.ts",
+    "start": "yarn start:prod",
+    "start:dev": "ts-node-dev --type-check src/index.ts",
+    "start:dev:watch": "nodemon -e ts,graphql -x ts-node --type-check src/index.ts",
+    "start:prod": "WARTHOG_ENV=production NODE_ENV=production yarn dotenv:generate && NODE_ENV=production node dist/src/index.js",
     "test": "jest --verbose --coverage"
   },
   "husky": {
@@ -56,7 +59,7 @@
     "dotenvi": "^0.6.0",
     "reflect-metadata": "^0.1.13",
     "typeorm": "^0.2.18",
-    "warthog": "^1.33.1"
+    "warthog": "^1.35.0"
   },
   "devDependencies": {
     "@types/dotenv": "^6.1.1",
