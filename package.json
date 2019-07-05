@@ -7,6 +7,10 @@
     "name": "Dan Caddigan",
     "url": "https://github.com/goldcaddy77"
   },
+  "engines": {
+    "node": "12.x",
+    "yarn": "1.x"
+  },
   "scripts": {
     "bootstrap": "yarn bootstrap:dev",
     "bootstrap:dev": "yarn && yarn build && yarn db:drop && yarn db:create && yarn db:seed",
