@@ -9,8 +9,10 @@ import { getServer } from '../src/server';
 import { UserStatus } from '../src/models';
 
 loadConfig();
-if (process.env.NODE_ENV !== 'development') {
-  throw new Error('Seeding only available in development environment');
+if (process.env.NODE_ENV !== 'development' && process.env.WARTHOG_DB_OVERRIDE !== 'true') {
+  throw new Error(
+    'Seeding only available in development environment, you can override this by setting WARTHOG_DB_OVERRIDE environment variable to `true`'
+  );
 }
 
 async function seedDatabase() {
@@ -43,11 +45,11 @@ async function seedDatabase() {
 
     Logger.info(user);
 
-    const BATCH_SIZE = 250;
+    const BATCH_SIZE = 10;
 
     let postBuffer: any[] = [];
     let batchNumber = 0;
-    for (let i = 0; i < 30_000; i++) {
+    for (let i = 0; i < 200; i++) {
       postBuffer.push({
         title: Faker.lorem.sentence(5),
         userId: user.id

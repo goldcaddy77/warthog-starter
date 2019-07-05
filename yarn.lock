@@ -6924,7 +6924,7 @@ typeorm@^0.2.18:
     yargonaut "^1.1.2"
     yargs "^13.2.1"
 
-typescript@3.5.2, typescript@^3.2.2:
+typescript@3.5.2, typescript@^3.5.2:
   version "3.5.2"
   resolved "https://registry.npmjs.org/typescript/-/typescript-3.5.2.tgz#a09e1dc69bc9551cadf17dba10ee42cf55e5d56c"
   integrity sha512-7KxJovlYhTX5RaRbUdkAXN1KUZ8PwWlTzQdHV6xNqvuFOs7+WBo10TQUqT19Q/Jz2hk5v9TQDIhyLhhJY4p5AA==
@@ -7096,10 +7096,10 @@ walker@^1.0.7, walker@~1.0.5:
   dependencies:
     makeerror "1.0.x"
 
-warthog@^1.33.1:
-  version "1.33.1"
-  resolved "https://registry.npmjs.org/warthog/-/warthog-1.33.1.tgz#129b65e956bd8b9ee0e341ddabc53bd98f2444d0"
-  integrity sha512-B6xi1AMJvkr4ZBsu2A1BkFtUK7Yy3Hb7ycWuq9Uyt8DJG1igsW5JHT/EB42RKttQ7vgnR07EKNG3qWBEnLbEcg==
+warthog@^1.35.0:
+  version "1.35.0"
+  resolved "https://registry.npmjs.org/warthog/-/warthog-1.35.0.tgz#1a1e8ce9539502486cc6ed39decd87934f407cd7"
+  integrity sha512-WW5CQMz53rp++gw0wbMYT8l1d7tV/0TWfF9gB43L+QU95YwQ6xNPGcv0pnZfAruSwdxzI75gLt407bX6va7m/w==
   dependencies:
     "@types/app-root-path" "^1.2.4"
     "@types/caller" "^1.0.0"
@@ -7155,7 +7155,7 @@ warthog@^1.33.1:
     typedi "^0.8.0"
     typeorm "^0.2.18"
     typeorm-typedi-extensions "^0.2.3"
-    typescript "^3.2.2"
+    typescript "^3.5.2"
 
 wcwidth@^1.0.1:
   version "1.0.1"
