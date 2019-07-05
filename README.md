@@ -12,17 +12,21 @@
   <a href="https://gitter.im/warthog-graphql/community?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=badge"><img src="https://badges.gitter.im/warthog-graphql/community.svg" alt="Join the chat at https://gitter.im/warthog-graphql/community"></a>
 </p>
 
+## Play with API
+
+This project is currently running on Heroku at [warthog-starter.herokuapp.com/graphql](https://warthog-starter.herokuapp.com/graphql).  Feel free to play around with it.
+
 ## Development Setup
 
 To get things set up in development, where everything will run in `ts-node`, run `yarn bootstrap`.
 
 ### Running the server
 
-Run `yarn start:ts` to run the server.
+Run `yarn start:dev` to run the server.
 
 ### Using GraphQL Playground
 
-When you run `yarn start:ts`, it will open [graphql-playground](https://github.com/prisma/graphql-playground).  When in the playground, you can issue queries and mutations against the API.
+When you run `yarn start:dev`, it will open [graphql-playground](https://github.com/prisma/graphql-playground).  When in the playground, you can issue queries and mutations against the API.
 
 ### Running tests
 
@@ -33,8 +37,6 @@ Run `yarn test` to run tests
 In Production mode, you'll need to build and run the compiled code.  To do this locally, run:
 
 ```bash
-WARTHOG_ENV=production yarn bootstrap
-
 yarn start
 ```
 
