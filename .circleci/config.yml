@@ -18,21 +18,28 @@ jobs:
           name: lint
           command: yarn lint
       - run:
-          name: config
-          command: yarn dotenv:generate
-      - run:
           name: build
           command: yarn build
       - run:
           name: test
           command: yarn test
       - run:
+          name: config-prod
+          command:
+            # Need to set port here for now because it's expected in env.yml
+            PORT=111-fake WARTHOG_ENV=production yarn dotenv:generate
+      - run:
           name: migrate
           command: yarn db:migrate
       - run:
           name: deploy
           command: |
-            git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master
+            if ["$CIRCLE_BRANCH" = "master"]; then
+              echo "On master branch, pushing to Production"
+              git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master
+            else
+              echo "On branch $CIRCLE_BRANCH - skipping deploy"
+            fi
       - save_cache:
           key: *yarn_cache_key
           paths: ~/circleci/node_modules

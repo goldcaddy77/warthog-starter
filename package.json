@@ -13,12 +13,13 @@
   },
   "scripts": {
     "bootstrap": "yarn bootstrap:dev",
-    "bootstrap:dev": "yarn && yarn build && yarn db:drop && yarn db:create && yarn db:seed",
+    "bootstrap:dev": "yarn && yarn build && yarn db:drop && yarn db:create && yarn db:migrate && yarn db:seed",
     "bootstrap:prod": "yarn && yarn build && yarn start:prod",
-    "build": "WARTHOG_ENV=development yarn dotenv:generate && yarn codegen && yarn compile",
+    "build": "yarn run config:dev && yarn codegen && yarn compile",
     "check:code": "tsc --noEmit && yarn lint && prettier ./{src,test,tools}/**/*.ts --write",
     "clean": "yarn db:drop && rm -rf ./node_modules ./generated ./dist",
     "codegen": "warthog codegen && rm warthog.sqlite.tmp",
+    "config:dev": "WARTHOG_ENV=development yarn dotenv:generate",
     "compile": "rm -rf ./dist && yarn tsc",
     "deploy": "heroku git:remote -a warthog-starter && git push heroku master",
     "dotenv:generate": "dotenvi -s ${WARTHOG_ENV:-development}",
@@ -39,7 +40,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && tsc -p ./tsconfig.json && yarn test"
+      "pre-commit": "yarn run config:dev && lint-staged && tsc -p ./tsconfig.json && yarn test"
     }
   },
   "lint-staged": {

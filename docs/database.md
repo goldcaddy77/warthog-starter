@@ -22,7 +22,7 @@ heroku git:remote -a warthog-starter
 heroku addons:create heroku-postgresql:hobby-dev
 ```
 
-## Update env.yml
+## Update DB Environment Variables
 
 Get your connection config by running `heroku pg:credentials:url`.  This will give you something like:
 
