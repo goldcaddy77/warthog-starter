@@ -85,6 +85,20 @@ If you see the following response, you're good:
 }
 ```
 
-## Heroku App Server
+## Configuring with CircleCI
 
-Will run `npm start` by default.  you 
+Add a command to your `config.yml`:
+
+```
+  - run:
+      name: deploy
+      command: |
+        git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master
+```
+
+Then go to the project settings --> environment variables (https://circleci.com/gh/goldcaddy77/warthog-starter/edit#env-vars) and add:
+
+- HEROKU_API_KEY - To get an API key, run `heroku authorizations:create`
+- HEROKU_APP_NAME - `warthog-starter`
+
+

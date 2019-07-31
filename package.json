@@ -20,6 +20,7 @@
     "clean": "yarn db:drop && rm -rf ./node_modules ./generated ./dist",
     "codegen": "warthog codegen && rm warthog.sqlite.tmp",
     "compile": "rm -rf ./dist && yarn tsc",
+    "deploy": "heroku git:remote -a warthog-starter && git push heroku master",
     "dotenv:generate": "dotenvi -s ${WARTHOG_ENV:-development}",
     "db:create": "warthog db:create",
     "db:drop": "warthog db:drop",
