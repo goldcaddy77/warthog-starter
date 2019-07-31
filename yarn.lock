@@ -4495,6 +4495,11 @@ lodash@^4.17.11, lodash@^4.17.4:
   resolved "https://registry.npmjs.org/lodash/-/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
   integrity sha512-cQKh8igo5QUhZ7lg38DYWAxMvjSAKG0A8wGSVimP07SIUEK2UO+arSRKbRZWtelMtN5V0Hkwh5ryOto/SshYIg==
 
+lodash@^4.17.13:
+  version "4.17.15"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
+  integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
+
 log-symbols@^1.0.2:
   version "1.0.2"
   resolved "https://registry.npmjs.org/log-symbols/-/log-symbols-1.0.2.tgz#376ff7b58ea3086a0f09facc74617eca501e1a18"
@@ -7096,10 +7101,10 @@ walker@^1.0.7, walker@~1.0.5:
   dependencies:
     makeerror "1.0.x"
 
-warthog@^1.35.0:
-  version "1.35.0"
-  resolved "https://registry.npmjs.org/warthog/-/warthog-1.35.0.tgz#1a1e8ce9539502486cc6ed39decd87934f407cd7"
-  integrity sha512-WW5CQMz53rp++gw0wbMYT8l1d7tV/0TWfF9gB43L+QU95YwQ6xNPGcv0pnZfAruSwdxzI75gLt407bX6va7m/w==
+warthog@^1.38.0:
+  version "1.38.0"
+  resolved "https://registry.yarnpkg.com/warthog/-/warthog-1.38.0.tgz#0830238856de5fc79313e5a126fbc4a3653c53f3"
+  integrity sha512-gFBaqpZS1uoBRPjU+g3ReeJpyHTC013L0pyVQDHMscmtOpYFNbGOfpPml6e89Zz2NeNMha9SUmAFwE++O2d0MA==
   dependencies:
     "@types/app-root-path" "^1.2.4"
     "@types/caller" "^1.0.0"
@@ -7141,7 +7146,7 @@ warthog@^1.35.0:
     graphql-iso-date "^3.6.1"
     graphql-tools "^4.0.3"
     graphql-type-json "^0.3.0"
-    lodash "^4.17.11"
+    lodash "^4.17.13"
     mkdirp "^0.5.1"
     node-emoji "^1.8.1"
     open "^6.3.0"
