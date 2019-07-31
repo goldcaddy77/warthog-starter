@@ -34,7 +34,7 @@ jobs:
       - run:
           name: deploy
           command: |
-            if ["$CIRCLE_BRANCH" = "master"]; then
+            if [ "$CIRCLE_BRANCH" = "master" ]; then
               echo "On master branch, pushing to Production"
               git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master
             else
