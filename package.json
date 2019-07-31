@@ -63,7 +63,7 @@
     "dotenvi": "^0.6.0",
     "reflect-metadata": "^0.1.13",
     "typeorm": "^0.2.18",
-    "warthog": "^1.35.0"
+    "warthog": "^1.38.0"
   },
   "devDependencies": {
     "@types/dotenv": "^6.1.1",
