@@ -16,9 +16,228 @@ const { GraphQLJSONObject } = require("graphql-type-json");
 
 import { BaseWhereInput, PaginationArgs } from "warthog";
 // @ts-ignore
-import { User } from "../src/modules/user/user.model";
+import { FeatureFlagUser } from "../src/feature-flag-user/feature-flag-user.model";
 // @ts-ignore
-import { Post } from "../src/modules/post/post.model";
+import { User } from "../src/user/user.model";
+// @ts-ignore
+import { UserSegment } from "../src/user-segment/user-segment.model";
+// @ts-ignore
+import { Segment } from "../src/segment/segment.model";
+// @ts-ignore
+import { FeatureFlagSegment } from "../src/feature-flag-segment/feature-flag-segment.model";
+// @ts-ignore
+import { Project } from "../src/project/project.model";
+// @ts-ignore
+import { FeatureFlag } from "../src/feature-flag/feature-flag.model";
+// @ts-ignore
+import { Environment } from "../src/environment/environment.model";
+
+export enum FeatureFlagUserOrderByEnum {
+  createdAt_ASC = "createdAt_ASC",
+  createdAt_DESC = "createdAt_DESC",
+
+  updatedAt_ASC = "updatedAt_ASC",
+  updatedAt_DESC = "updatedAt_DESC",
+
+  deletedAt_ASC = "deletedAt_ASC",
+  deletedAt_DESC = "deletedAt_DESC",
+
+  featureKey_ASC = "featureKey_ASC",
+  featureKey_DESC = "featureKey_DESC",
+
+  featureFlagId_ASC = "featureFlagId_ASC",
+  featureFlagId_DESC = "featureFlagId_DESC",
+
+  userKey_ASC = "userKey_ASC",
+  userKey_DESC = "userKey_DESC",
+
+  userId_ASC = "userId_ASC",
+  userId_DESC = "userId_DESC",
+
+  projKey_ASC = "projKey_ASC",
+  projKey_DESC = "projKey_DESC",
+
+  projectId_ASC = "projectId_ASC",
+  projectId_DESC = "projectId_DESC",
+
+  envKey_ASC = "envKey_ASC",
+  envKey_DESC = "envKey_DESC",
+
+  environmentId_ASC = "environmentId_ASC",
+  environmentId_DESC = "environmentId_DESC"
+}
+
+registerEnumType(FeatureFlagUserOrderByEnum, {
+  name: "FeatureFlagUserOrderByInput"
+});
+
+@TypeGraphQLInputType()
+export class FeatureFlagUserWhereInput extends BaseWhereInput {
+  @TypeGraphQLField({ nullable: true })
+  featureKey_eq?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  featureKey_contains?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  featureKey_startsWith?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  featureKey_endsWith?: string;
+
+  @TypeGraphQLField(() => [String], { nullable: true })
+  featureKey_in?: string[];
+
+  @TypeGraphQLField(() => ID, { nullable: true })
+  featureFlagId_eq?: string;
+
+  @TypeGraphQLField(() => [ID], { nullable: true })
+  featureFlagId_in?: string[];
+
+  @TypeGraphQLField({ nullable: true })
+  userKey_eq?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  userKey_contains?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  userKey_startsWith?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  userKey_endsWith?: string;
+
+  @TypeGraphQLField(() => [String], { nullable: true })
+  userKey_in?: string[];
+
+  @TypeGraphQLField(() => ID, { nullable: true })
+  userId_eq?: string;
+
+  @TypeGraphQLField(() => [ID], { nullable: true })
+  userId_in?: string[];
+
+  @TypeGraphQLField({ nullable: true })
+  projKey_eq?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  projKey_contains?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  projKey_startsWith?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  projKey_endsWith?: string;
+
+  @TypeGraphQLField(() => [String], { nullable: true })
+  projKey_in?: string[];
+
+  @TypeGraphQLField(() => ID, { nullable: true })
+  projectId_eq?: string;
+
+  @TypeGraphQLField(() => [ID], { nullable: true })
+  projectId_in?: string[];
+
+  @TypeGraphQLField({ nullable: true })
+  envKey_eq?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  envKey_contains?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  envKey_startsWith?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  envKey_endsWith?: string;
+
+  @TypeGraphQLField(() => [String], { nullable: true })
+  envKey_in?: string[];
+
+  @TypeGraphQLField(() => ID, { nullable: true })
+  environmentId_eq?: string;
+
+  @TypeGraphQLField(() => [ID], { nullable: true })
+  environmentId_in?: string[];
+}
+
+@TypeGraphQLInputType()
+export class FeatureFlagUserWhereUniqueInput {
+  @TypeGraphQLField(() => String)
+  id?: string;
+}
+
+@TypeGraphQLInputType()
+export class FeatureFlagUserCreateInput {
+  @TypeGraphQLField()
+  featureKey!: string;
+
+  @TypeGraphQLField({ nullable: true })
+  featureFlagId?: string;
+
+  @TypeGraphQLField()
+  userKey!: string;
+
+  @TypeGraphQLField({ nullable: true })
+  userId?: string;
+
+  @TypeGraphQLField()
+  projKey!: string;
+
+  @TypeGraphQLField({ nullable: true })
+  projectId?: string;
+
+  @TypeGraphQLField()
+  envKey!: string;
+
+  @TypeGraphQLField({ nullable: true })
+  environmentId?: string;
+}
+
+@TypeGraphQLInputType()
+export class FeatureFlagUserUpdateInput {
+  @TypeGraphQLField({ nullable: true })
+  featureKey?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  featureFlagId?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  userKey?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  userId?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  projKey?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  projectId?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  envKey?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  environmentId?: string;
+}
+
+@ArgsType()
+export class FeatureFlagUserWhereArgs extends PaginationArgs {
+  @TypeGraphQLField(() => FeatureFlagUserWhereInput, { nullable: true })
+  where?: FeatureFlagUserWhereInput;
+
+  @TypeGraphQLField(() => FeatureFlagUserOrderByEnum, { nullable: true })
+  orderBy?: FeatureFlagUserOrderByEnum;
+}
+
+@ArgsType()
+export class FeatureFlagUserCreateManyArgs {
+  @TypeGraphQLField(() => [FeatureFlagUserCreateInput])
+  data!: FeatureFlagUserCreateInput[];
+}
+
+@ArgsType()
+export class FeatureFlagUserUpdateArgs {
+  @TypeGraphQLField() data!: FeatureFlagUserUpdateInput;
+  @TypeGraphQLField() where!: FeatureFlagUserWhereUniqueInput;
+}
 
 export enum UserOrderByEnum {
   createdAt_ASC = "createdAt_ASC",
@@ -30,17 +249,8 @@ export enum UserOrderByEnum {
   deletedAt_ASC = "deletedAt_ASC",
   deletedAt_DESC = "deletedAt_DESC",
 
-  firstName_ASC = "firstName_ASC",
-  firstName_DESC = "firstName_DESC",
-
-  lastName_ASC = "lastName_ASC",
-  lastName_DESC = "lastName_DESC",
-
-  status_ASC = "status_ASC",
-  status_DESC = "status_DESC",
-
-  email_ASC = "email_ASC",
-  email_DESC = "email_DESC"
+  key_ASC = "key_ASC",
+  key_DESC = "key_DESC"
 }
 
 registerEnumType(UserOrderByEnum, {
@@ -50,64 +260,19 @@ registerEnumType(UserOrderByEnum, {
 @TypeGraphQLInputType()
 export class UserWhereInput extends BaseWhereInput {
   @TypeGraphQLField({ nullable: true })
-  firstName_eq?: string;
+  key_eq?: string;
 
   @TypeGraphQLField({ nullable: true })
-  firstName_contains?: string;
+  key_contains?: string;
 
   @TypeGraphQLField({ nullable: true })
-  firstName_startsWith?: string;
+  key_startsWith?: string;
 
   @TypeGraphQLField({ nullable: true })
-  firstName_endsWith?: string;
+  key_endsWith?: string;
 
   @TypeGraphQLField(() => [String], { nullable: true })
-  firstName_in?: string[];
-
-  @TypeGraphQLField({ nullable: true })
-  lastName_eq?: string;
-
-  @TypeGraphQLField({ nullable: true })
-  lastName_contains?: string;
-
-  @TypeGraphQLField({ nullable: true })
-  lastName_startsWith?: string;
-
-  @TypeGraphQLField({ nullable: true })
-  lastName_endsWith?: string;
-
-  @TypeGraphQLField(() => [String], { nullable: true })
-  lastName_in?: string[];
-
-  @TypeGraphQLField({ nullable: true })
-  status_eq?: string;
-
-  @TypeGraphQLField({ nullable: true })
-  status_contains?: string;
-
-  @TypeGraphQLField({ nullable: true })
-  status_startsWith?: string;
-
-  @TypeGraphQLField({ nullable: true })
-  status_endsWith?: string;
-
-  @TypeGraphQLField(() => [String], { nullable: true })
-  status_in?: string[];
-
-  @TypeGraphQLField({ nullable: true })
-  email_eq?: string;
-
-  @TypeGraphQLField({ nullable: true })
-  email_contains?: string;
-
-  @TypeGraphQLField({ nullable: true })
-  email_startsWith?: string;
-
-  @TypeGraphQLField({ nullable: true })
-  email_endsWith?: string;
-
-  @TypeGraphQLField(() => [String], { nullable: true })
-  email_in?: string[];
+  key_in?: string[];
 }
 
 @TypeGraphQLInputType()
@@ -116,37 +281,19 @@ export class UserWhereUniqueInput {
   id?: string;
 
   @TypeGraphQLField(() => String, { nullable: true })
-  email?: string;
+  key?: string;
 }
 
 @TypeGraphQLInputType()
 export class UserCreateInput {
   @TypeGraphQLField()
-  firstName!: string;
-
-  @TypeGraphQLField({ nullable: true })
-  lastName?: string;
-
-  @TypeGraphQLField()
-  status!: string;
-
-  @TypeGraphQLField()
-  email!: string;
+  key!: string;
 }
 
 @TypeGraphQLInputType()
 export class UserUpdateInput {
   @TypeGraphQLField({ nullable: true })
-  firstName?: string;
-
-  @TypeGraphQLField({ nullable: true })
-  lastName?: string;
-
-  @TypeGraphQLField({ nullable: true })
-  status?: string;
-
-  @TypeGraphQLField({ nullable: true })
-  email?: string;
+  key?: string;
 }
 
 @ArgsType()
@@ -170,7 +317,7 @@ export class UserUpdateArgs {
   @TypeGraphQLField() where!: UserWhereUniqueInput;
 }
 
-export enum PostOrderByEnum {
+export enum UserSegmentOrderByEnum {
   createdAt_ASC = "createdAt_ASC",
   createdAt_DESC = "createdAt_DESC",
 
@@ -180,82 +327,985 @@ export enum PostOrderByEnum {
   deletedAt_ASC = "deletedAt_ASC",
   deletedAt_DESC = "deletedAt_DESC",
 
-  title_ASC = "title_ASC",
-  title_DESC = "title_DESC",
+  projKey_ASC = "projKey_ASC",
+  projKey_DESC = "projKey_DESC",
+
+  projectId_ASC = "projectId_ASC",
+  projectId_DESC = "projectId_DESC",
+
+  envKey_ASC = "envKey_ASC",
+  envKey_DESC = "envKey_DESC",
+
+  environmentId_ASC = "environmentId_ASC",
+  environmentId_DESC = "environmentId_DESC",
+
+  userKey_ASC = "userKey_ASC",
+  userKey_DESC = "userKey_DESC",
 
   userId_ASC = "userId_ASC",
-  userId_DESC = "userId_DESC"
+  userId_DESC = "userId_DESC",
+
+  segmentKey_ASC = "segmentKey_ASC",
+  segmentKey_DESC = "segmentKey_DESC",
+
+  segmentId_ASC = "segmentId_ASC",
+  segmentId_DESC = "segmentId_DESC"
 }
 
-registerEnumType(PostOrderByEnum, {
-  name: "PostOrderByInput"
+registerEnumType(UserSegmentOrderByEnum, {
+  name: "UserSegmentOrderByInput"
 });
 
 @TypeGraphQLInputType()
-export class PostWhereInput extends BaseWhereInput {
+export class UserSegmentWhereInput extends BaseWhereInput {
   @TypeGraphQLField({ nullable: true })
-  title_eq?: string;
+  projKey_eq?: string;
 
   @TypeGraphQLField({ nullable: true })
-  title_contains?: string;
+  projKey_contains?: string;
 
   @TypeGraphQLField({ nullable: true })
-  title_startsWith?: string;
+  projKey_startsWith?: string;
 
   @TypeGraphQLField({ nullable: true })
-  title_endsWith?: string;
+  projKey_endsWith?: string;
 
   @TypeGraphQLField(() => [String], { nullable: true })
-  title_in?: string[];
+  projKey_in?: string[];
+
+  @TypeGraphQLField(() => ID, { nullable: true })
+  projectId_eq?: string;
+
+  @TypeGraphQLField(() => [ID], { nullable: true })
+  projectId_in?: string[];
+
+  @TypeGraphQLField({ nullable: true })
+  envKey_eq?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  envKey_contains?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  envKey_startsWith?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  envKey_endsWith?: string;
+
+  @TypeGraphQLField(() => [String], { nullable: true })
+  envKey_in?: string[];
+
+  @TypeGraphQLField(() => ID, { nullable: true })
+  environmentId_eq?: string;
+
+  @TypeGraphQLField(() => [ID], { nullable: true })
+  environmentId_in?: string[];
+
+  @TypeGraphQLField({ nullable: true })
+  userKey_eq?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  userKey_contains?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  userKey_startsWith?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  userKey_endsWith?: string;
+
+  @TypeGraphQLField(() => [String], { nullable: true })
+  userKey_in?: string[];
 
   @TypeGraphQLField(() => ID, { nullable: true })
   userId_eq?: string;
 
   @TypeGraphQLField(() => [ID], { nullable: true })
   userId_in?: string[];
+
+  @TypeGraphQLField({ nullable: true })
+  segmentKey_eq?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  segmentKey_contains?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  segmentKey_startsWith?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  segmentKey_endsWith?: string;
+
+  @TypeGraphQLField(() => [String], { nullable: true })
+  segmentKey_in?: string[];
+
+  @TypeGraphQLField(() => ID, { nullable: true })
+  segmentId_eq?: string;
+
+  @TypeGraphQLField(() => [ID], { nullable: true })
+  segmentId_in?: string[];
 }
 
 @TypeGraphQLInputType()
-export class PostWhereUniqueInput {
+export class UserSegmentWhereUniqueInput {
   @TypeGraphQLField(() => String)
   id?: string;
 }
 
 @TypeGraphQLInputType()
-export class PostCreateInput {
+export class UserSegmentCreateInput {
   @TypeGraphQLField()
-  title!: string;
+  projKey!: string;
 
-  @TypeGraphQLField()
-  userId!: string;
-}
-
-@TypeGraphQLInputType()
-export class PostUpdateInput {
   @TypeGraphQLField({ nullable: true })
-  title?: string;
+  projectId?: string;
+
+  @TypeGraphQLField()
+  envKey!: string;
+
+  @TypeGraphQLField({ nullable: true })
+  environmentId?: string;
+
+  @TypeGraphQLField()
+  userKey!: string;
 
   @TypeGraphQLField({ nullable: true })
   userId?: string;
+
+  @TypeGraphQLField()
+  segmentKey!: string;
+
+  @TypeGraphQLField({ nullable: true })
+  segmentId?: string;
+}
+
+@TypeGraphQLInputType()
+export class UserSegmentUpdateInput {
+  @TypeGraphQLField({ nullable: true })
+  projKey?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  projectId?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  envKey?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  environmentId?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  userKey?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  userId?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  segmentKey?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  segmentId?: string;
 }
 
 @ArgsType()
-export class PostWhereArgs extends PaginationArgs {
-  @TypeGraphQLField(() => PostWhereInput, { nullable: true })
-  where?: PostWhereInput;
+export class UserSegmentWhereArgs extends PaginationArgs {
+  @TypeGraphQLField(() => UserSegmentWhereInput, { nullable: true })
+  where?: UserSegmentWhereInput;
 
-  @TypeGraphQLField(() => PostOrderByEnum, { nullable: true })
-  orderBy?: PostOrderByEnum;
+  @TypeGraphQLField(() => UserSegmentOrderByEnum, { nullable: true })
+  orderBy?: UserSegmentOrderByEnum;
 }
 
 @ArgsType()
-export class PostCreateManyArgs {
-  @TypeGraphQLField(() => [PostCreateInput])
-  data!: PostCreateInput[];
+export class UserSegmentCreateManyArgs {
+  @TypeGraphQLField(() => [UserSegmentCreateInput])
+  data!: UserSegmentCreateInput[];
 }
 
 @ArgsType()
-export class PostUpdateArgs {
-  @TypeGraphQLField() data!: PostUpdateInput;
-  @TypeGraphQLField() where!: PostWhereUniqueInput;
+export class UserSegmentUpdateArgs {
+  @TypeGraphQLField() data!: UserSegmentUpdateInput;
+  @TypeGraphQLField() where!: UserSegmentWhereUniqueInput;
+}
+
+export enum SegmentOrderByEnum {
+  createdAt_ASC = "createdAt_ASC",
+  createdAt_DESC = "createdAt_DESC",
+
+  updatedAt_ASC = "updatedAt_ASC",
+  updatedAt_DESC = "updatedAt_DESC",
+
+  deletedAt_ASC = "deletedAt_ASC",
+  deletedAt_DESC = "deletedAt_DESC",
+
+  name_ASC = "name_ASC",
+  name_DESC = "name_DESC",
+
+  key_ASC = "key_ASC",
+  key_DESC = "key_DESC",
+
+  description_ASC = "description_ASC",
+  description_DESC = "description_DESC",
+
+  projKey_ASC = "projKey_ASC",
+  projKey_DESC = "projKey_DESC",
+
+  projectId_ASC = "projectId_ASC",
+  projectId_DESC = "projectId_DESC",
+
+  envKey_ASC = "envKey_ASC",
+  envKey_DESC = "envKey_DESC",
+
+  environmentId_ASC = "environmentId_ASC",
+  environmentId_DESC = "environmentId_DESC"
+}
+
+registerEnumType(SegmentOrderByEnum, {
+  name: "SegmentOrderByInput"
+});
+
+@TypeGraphQLInputType()
+export class SegmentWhereInput extends BaseWhereInput {
+  @TypeGraphQLField({ nullable: true })
+  name_eq?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  name_contains?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  name_startsWith?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  name_endsWith?: string;
+
+  @TypeGraphQLField(() => [String], { nullable: true })
+  name_in?: string[];
+
+  @TypeGraphQLField({ nullable: true })
+  key_eq?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  key_contains?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  key_startsWith?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  key_endsWith?: string;
+
+  @TypeGraphQLField(() => [String], { nullable: true })
+  key_in?: string[];
+
+  @TypeGraphQLField({ nullable: true })
+  description_eq?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  description_contains?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  description_startsWith?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  description_endsWith?: string;
+
+  @TypeGraphQLField(() => [String], { nullable: true })
+  description_in?: string[];
+
+  @TypeGraphQLField({ nullable: true })
+  projKey_eq?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  projKey_contains?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  projKey_startsWith?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  projKey_endsWith?: string;
+
+  @TypeGraphQLField(() => [String], { nullable: true })
+  projKey_in?: string[];
+
+  @TypeGraphQLField(() => ID, { nullable: true })
+  projectId_eq?: string;
+
+  @TypeGraphQLField(() => [ID], { nullable: true })
+  projectId_in?: string[];
+
+  @TypeGraphQLField({ nullable: true })
+  envKey_eq?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  envKey_contains?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  envKey_startsWith?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  envKey_endsWith?: string;
+
+  @TypeGraphQLField(() => [String], { nullable: true })
+  envKey_in?: string[];
+
+  @TypeGraphQLField(() => ID, { nullable: true })
+  environmentId_eq?: string;
+
+  @TypeGraphQLField(() => [ID], { nullable: true })
+  environmentId_in?: string[];
+}
+
+@TypeGraphQLInputType()
+export class SegmentWhereUniqueInput {
+  @TypeGraphQLField(() => String)
+  id?: string;
+}
+
+@TypeGraphQLInputType()
+export class SegmentCreateInput {
+  @TypeGraphQLField()
+  name!: string;
+
+  @TypeGraphQLField()
+  key!: string;
+
+  @TypeGraphQLField()
+  description!: string;
+
+  @TypeGraphQLField()
+  projKey!: string;
+
+  @TypeGraphQLField({ nullable: true })
+  projectId?: string;
+
+  @TypeGraphQLField()
+  envKey!: string;
+
+  @TypeGraphQLField({ nullable: true })
+  environmentId?: string;
+}
+
+@TypeGraphQLInputType()
+export class SegmentUpdateInput {
+  @TypeGraphQLField({ nullable: true })
+  name?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  key?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  description?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  projKey?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  projectId?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  envKey?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  environmentId?: string;
+}
+
+@ArgsType()
+export class SegmentWhereArgs extends PaginationArgs {
+  @TypeGraphQLField(() => SegmentWhereInput, { nullable: true })
+  where?: SegmentWhereInput;
+
+  @TypeGraphQLField(() => SegmentOrderByEnum, { nullable: true })
+  orderBy?: SegmentOrderByEnum;
+}
+
+@ArgsType()
+export class SegmentCreateManyArgs {
+  @TypeGraphQLField(() => [SegmentCreateInput])
+  data!: SegmentCreateInput[];
+}
+
+@ArgsType()
+export class SegmentUpdateArgs {
+  @TypeGraphQLField() data!: SegmentUpdateInput;
+  @TypeGraphQLField() where!: SegmentWhereUniqueInput;
+}
+
+export enum FeatureFlagSegmentOrderByEnum {
+  createdAt_ASC = "createdAt_ASC",
+  createdAt_DESC = "createdAt_DESC",
+
+  updatedAt_ASC = "updatedAt_ASC",
+  updatedAt_DESC = "updatedAt_DESC",
+
+  deletedAt_ASC = "deletedAt_ASC",
+  deletedAt_DESC = "deletedAt_DESC",
+
+  projKey_ASC = "projKey_ASC",
+  projKey_DESC = "projKey_DESC",
+
+  projectId_ASC = "projectId_ASC",
+  projectId_DESC = "projectId_DESC",
+
+  envKey_ASC = "envKey_ASC",
+  envKey_DESC = "envKey_DESC",
+
+  environmentId_ASC = "environmentId_ASC",
+  environmentId_DESC = "environmentId_DESC",
+
+  featureKey_ASC = "featureKey_ASC",
+  featureKey_DESC = "featureKey_DESC",
+
+  featureFlagId_ASC = "featureFlagId_ASC",
+  featureFlagId_DESC = "featureFlagId_DESC",
+
+  segmentKey_ASC = "segmentKey_ASC",
+  segmentKey_DESC = "segmentKey_DESC",
+
+  segmentId_ASC = "segmentId_ASC",
+  segmentId_DESC = "segmentId_DESC"
+}
+
+registerEnumType(FeatureFlagSegmentOrderByEnum, {
+  name: "FeatureFlagSegmentOrderByInput"
+});
+
+@TypeGraphQLInputType()
+export class FeatureFlagSegmentWhereInput extends BaseWhereInput {
+  @TypeGraphQLField({ nullable: true })
+  projKey_eq?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  projKey_contains?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  projKey_startsWith?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  projKey_endsWith?: string;
+
+  @TypeGraphQLField(() => [String], { nullable: true })
+  projKey_in?: string[];
+
+  @TypeGraphQLField(() => ID, { nullable: true })
+  projectId_eq?: string;
+
+  @TypeGraphQLField(() => [ID], { nullable: true })
+  projectId_in?: string[];
+
+  @TypeGraphQLField({ nullable: true })
+  envKey_eq?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  envKey_contains?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  envKey_startsWith?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  envKey_endsWith?: string;
+
+  @TypeGraphQLField(() => [String], { nullable: true })
+  envKey_in?: string[];
+
+  @TypeGraphQLField(() => ID, { nullable: true })
+  environmentId_eq?: string;
+
+  @TypeGraphQLField(() => [ID], { nullable: true })
+  environmentId_in?: string[];
+
+  @TypeGraphQLField({ nullable: true })
+  featureKey_eq?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  featureKey_contains?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  featureKey_startsWith?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  featureKey_endsWith?: string;
+
+  @TypeGraphQLField(() => [String], { nullable: true })
+  featureKey_in?: string[];
+
+  @TypeGraphQLField(() => ID, { nullable: true })
+  featureFlagId_eq?: string;
+
+  @TypeGraphQLField(() => [ID], { nullable: true })
+  featureFlagId_in?: string[];
+
+  @TypeGraphQLField({ nullable: true })
+  segmentKey_eq?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  segmentKey_contains?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  segmentKey_startsWith?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  segmentKey_endsWith?: string;
+
+  @TypeGraphQLField(() => [String], { nullable: true })
+  segmentKey_in?: string[];
+
+  @TypeGraphQLField(() => ID, { nullable: true })
+  segmentId_eq?: string;
+
+  @TypeGraphQLField(() => [ID], { nullable: true })
+  segmentId_in?: string[];
+}
+
+@TypeGraphQLInputType()
+export class FeatureFlagSegmentWhereUniqueInput {
+  @TypeGraphQLField(() => String)
+  id?: string;
+}
+
+@TypeGraphQLInputType()
+export class FeatureFlagSegmentCreateInput {
+  @TypeGraphQLField()
+  projKey!: string;
+
+  @TypeGraphQLField({ nullable: true })
+  projectId?: string;
+
+  @TypeGraphQLField()
+  envKey!: string;
+
+  @TypeGraphQLField({ nullable: true })
+  environmentId?: string;
+
+  @TypeGraphQLField()
+  featureKey!: string;
+
+  @TypeGraphQLField({ nullable: true })
+  featureFlagId?: string;
+
+  @TypeGraphQLField()
+  segmentKey!: string;
+
+  @TypeGraphQLField({ nullable: true })
+  segmentId?: string;
+}
+
+@TypeGraphQLInputType()
+export class FeatureFlagSegmentUpdateInput {
+  @TypeGraphQLField({ nullable: true })
+  projKey?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  projectId?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  envKey?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  environmentId?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  featureKey?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  featureFlagId?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  segmentKey?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  segmentId?: string;
+}
+
+@ArgsType()
+export class FeatureFlagSegmentWhereArgs extends PaginationArgs {
+  @TypeGraphQLField(() => FeatureFlagSegmentWhereInput, { nullable: true })
+  where?: FeatureFlagSegmentWhereInput;
+
+  @TypeGraphQLField(() => FeatureFlagSegmentOrderByEnum, { nullable: true })
+  orderBy?: FeatureFlagSegmentOrderByEnum;
+}
+
+@ArgsType()
+export class FeatureFlagSegmentCreateManyArgs {
+  @TypeGraphQLField(() => [FeatureFlagSegmentCreateInput])
+  data!: FeatureFlagSegmentCreateInput[];
+}
+
+@ArgsType()
+export class FeatureFlagSegmentUpdateArgs {
+  @TypeGraphQLField() data!: FeatureFlagSegmentUpdateInput;
+  @TypeGraphQLField() where!: FeatureFlagSegmentWhereUniqueInput;
+}
+
+export enum ProjectOrderByEnum {
+  createdAt_ASC = "createdAt_ASC",
+  createdAt_DESC = "createdAt_DESC",
+
+  updatedAt_ASC = "updatedAt_ASC",
+  updatedAt_DESC = "updatedAt_DESC",
+
+  deletedAt_ASC = "deletedAt_ASC",
+  deletedAt_DESC = "deletedAt_DESC",
+
+  name_ASC = "name_ASC",
+  name_DESC = "name_DESC",
+
+  key_ASC = "key_ASC",
+  key_DESC = "key_DESC"
+}
+
+registerEnumType(ProjectOrderByEnum, {
+  name: "ProjectOrderByInput"
+});
+
+@TypeGraphQLInputType()
+export class ProjectWhereInput extends BaseWhereInput {
+  @TypeGraphQLField({ nullable: true })
+  name_eq?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  name_contains?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  name_startsWith?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  name_endsWith?: string;
+
+  @TypeGraphQLField(() => [String], { nullable: true })
+  name_in?: string[];
+
+  @TypeGraphQLField({ nullable: true })
+  key_eq?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  key_contains?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  key_startsWith?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  key_endsWith?: string;
+
+  @TypeGraphQLField(() => [String], { nullable: true })
+  key_in?: string[];
+}
+
+@TypeGraphQLInputType()
+export class ProjectWhereUniqueInput {
+  @TypeGraphQLField(() => String, { nullable: true })
+  id?: string;
+
+  @TypeGraphQLField(() => String, { nullable: true })
+  key?: string;
+}
+
+@TypeGraphQLInputType()
+export class ProjectCreateInput {
+  @TypeGraphQLField()
+  name!: string;
+
+  @TypeGraphQLField()
+  key!: string;
+}
+
+@TypeGraphQLInputType()
+export class ProjectUpdateInput {
+  @TypeGraphQLField({ nullable: true })
+  name?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  key?: string;
+}
+
+@ArgsType()
+export class ProjectWhereArgs extends PaginationArgs {
+  @TypeGraphQLField(() => ProjectWhereInput, { nullable: true })
+  where?: ProjectWhereInput;
+
+  @TypeGraphQLField(() => ProjectOrderByEnum, { nullable: true })
+  orderBy?: ProjectOrderByEnum;
+}
+
+@ArgsType()
+export class ProjectCreateManyArgs {
+  @TypeGraphQLField(() => [ProjectCreateInput])
+  data!: ProjectCreateInput[];
+}
+
+@ArgsType()
+export class ProjectUpdateArgs {
+  @TypeGraphQLField() data!: ProjectUpdateInput;
+  @TypeGraphQLField() where!: ProjectWhereUniqueInput;
+}
+
+export enum FeatureFlagOrderByEnum {
+  createdAt_ASC = "createdAt_ASC",
+  createdAt_DESC = "createdAt_DESC",
+
+  updatedAt_ASC = "updatedAt_ASC",
+  updatedAt_DESC = "updatedAt_DESC",
+
+  deletedAt_ASC = "deletedAt_ASC",
+  deletedAt_DESC = "deletedAt_DESC",
+
+  name_ASC = "name_ASC",
+  name_DESC = "name_DESC",
+
+  key_ASC = "key_ASC",
+  key_DESC = "key_DESC",
+
+  projKey_ASC = "projKey_ASC",
+  projKey_DESC = "projKey_DESC",
+
+  projectId_ASC = "projectId_ASC",
+  projectId_DESC = "projectId_DESC"
+}
+
+registerEnumType(FeatureFlagOrderByEnum, {
+  name: "FeatureFlagOrderByInput"
+});
+
+@TypeGraphQLInputType()
+export class FeatureFlagWhereInput extends BaseWhereInput {
+  @TypeGraphQLField({ nullable: true })
+  name_eq?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  name_contains?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  name_startsWith?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  name_endsWith?: string;
+
+  @TypeGraphQLField(() => [String], { nullable: true })
+  name_in?: string[];
+
+  @TypeGraphQLField({ nullable: true })
+  key_eq?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  key_contains?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  key_startsWith?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  key_endsWith?: string;
+
+  @TypeGraphQLField(() => [String], { nullable: true })
+  key_in?: string[];
+
+  @TypeGraphQLField({ nullable: true })
+  projKey_eq?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  projKey_contains?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  projKey_startsWith?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  projKey_endsWith?: string;
+
+  @TypeGraphQLField(() => [String], { nullable: true })
+  projKey_in?: string[];
+
+  @TypeGraphQLField(() => ID, { nullable: true })
+  projectId_eq?: string;
+
+  @TypeGraphQLField(() => [ID], { nullable: true })
+  projectId_in?: string[];
+}
+
+@TypeGraphQLInputType()
+export class FeatureFlagWhereUniqueInput {
+  @TypeGraphQLField(() => String)
+  id?: string;
+}
+
+@TypeGraphQLInputType()
+export class FeatureFlagCreateInput {
+  @TypeGraphQLField()
+  name!: string;
+
+  @TypeGraphQLField()
+  key!: string;
+
+  @TypeGraphQLField()
+  projKey!: string;
+
+  @TypeGraphQLField({ nullable: true })
+  projectId?: string;
+}
+
+@TypeGraphQLInputType()
+export class FeatureFlagUpdateInput {
+  @TypeGraphQLField({ nullable: true })
+  name?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  key?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  projKey?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  projectId?: string;
+}
+
+@ArgsType()
+export class FeatureFlagWhereArgs extends PaginationArgs {
+  @TypeGraphQLField(() => FeatureFlagWhereInput, { nullable: true })
+  where?: FeatureFlagWhereInput;
+
+  @TypeGraphQLField(() => FeatureFlagOrderByEnum, { nullable: true })
+  orderBy?: FeatureFlagOrderByEnum;
+}
+
+@ArgsType()
+export class FeatureFlagCreateManyArgs {
+  @TypeGraphQLField(() => [FeatureFlagCreateInput])
+  data!: FeatureFlagCreateInput[];
+}
+
+@ArgsType()
+export class FeatureFlagUpdateArgs {
+  @TypeGraphQLField() data!: FeatureFlagUpdateInput;
+  @TypeGraphQLField() where!: FeatureFlagWhereUniqueInput;
+}
+
+export enum EnvironmentOrderByEnum {
+  createdAt_ASC = "createdAt_ASC",
+  createdAt_DESC = "createdAt_DESC",
+
+  updatedAt_ASC = "updatedAt_ASC",
+  updatedAt_DESC = "updatedAt_DESC",
+
+  deletedAt_ASC = "deletedAt_ASC",
+  deletedAt_DESC = "deletedAt_DESC",
+
+  name_ASC = "name_ASC",
+  name_DESC = "name_DESC",
+
+  key_ASC = "key_ASC",
+  key_DESC = "key_DESC",
+
+  projKey_ASC = "projKey_ASC",
+  projKey_DESC = "projKey_DESC",
+
+  projectId_ASC = "projectId_ASC",
+  projectId_DESC = "projectId_DESC"
+}
+
+registerEnumType(EnvironmentOrderByEnum, {
+  name: "EnvironmentOrderByInput"
+});
+
+@TypeGraphQLInputType()
+export class EnvironmentWhereInput extends BaseWhereInput {
+  @TypeGraphQLField({ nullable: true })
+  name_eq?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  name_contains?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  name_startsWith?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  name_endsWith?: string;
+
+  @TypeGraphQLField(() => [String], { nullable: true })
+  name_in?: string[];
+
+  @TypeGraphQLField({ nullable: true })
+  key_eq?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  key_contains?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  key_startsWith?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  key_endsWith?: string;
+
+  @TypeGraphQLField(() => [String], { nullable: true })
+  key_in?: string[];
+
+  @TypeGraphQLField({ nullable: true })
+  projKey_eq?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  projKey_contains?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  projKey_startsWith?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  projKey_endsWith?: string;
+
+  @TypeGraphQLField(() => [String], { nullable: true })
+  projKey_in?: string[];
+
+  @TypeGraphQLField(() => ID, { nullable: true })
+  projectId_eq?: string;
+
+  @TypeGraphQLField(() => [ID], { nullable: true })
+  projectId_in?: string[];
+}
+
+@TypeGraphQLInputType()
+export class EnvironmentWhereUniqueInput {
+  @TypeGraphQLField(() => String)
+  id?: string;
+}
+
+@TypeGraphQLInputType()
+export class EnvironmentCreateInput {
+  @TypeGraphQLField()
+  name!: string;
+
+  @TypeGraphQLField()
+  key!: string;
+
+  @TypeGraphQLField()
+  projKey!: string;
+
+  @TypeGraphQLField({ nullable: true })
+  projectId?: string;
+}
+
+@TypeGraphQLInputType()
+export class EnvironmentUpdateInput {
+  @TypeGraphQLField({ nullable: true })
+  name?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  key?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  projKey?: string;
+
+  @TypeGraphQLField({ nullable: true })
+  projectId?: string;
+}
+
+@ArgsType()
+export class EnvironmentWhereArgs extends PaginationArgs {
+  @TypeGraphQLField(() => EnvironmentWhereInput, { nullable: true })
+  where?: EnvironmentWhereInput;
+
+  @TypeGraphQLField(() => EnvironmentOrderByEnum, { nullable: true })
+  orderBy?: EnvironmentOrderByEnum;
+}
+
+@ArgsType()
+export class EnvironmentCreateManyArgs {
+  @TypeGraphQLField(() => [EnvironmentCreateInput])
+  data!: EnvironmentCreateInput[];
+}
+
+@ArgsType()
+export class EnvironmentUpdateArgs {
+  @TypeGraphQLField() data!: EnvironmentUpdateInput;
+  @TypeGraphQLField() where!: EnvironmentWhereUniqueInput;
 }

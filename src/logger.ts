@@ -15,9 +15,9 @@ export class Logger {
     console.error(util.inspect(args, { showHidden: false, depth: null }));
   }
 
-  static debug(...args: any[]) {
-    console.debug(args);
-  }
+  // static debug(...args: any[]) {
+  //   console.debug(args);
+  // }
 
   static log(...args: any[]) {
     console.log(args);
