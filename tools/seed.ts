@@ -23,9 +23,14 @@ async function seedDatabase() {
     return process.exit(1);
   }
 
-  let project: Project;
-  // Not doing this in try/catch because the rest of the script complains that it's being used before beind declared otherwise
-  project = ((await createProject(binding as any)) as unknown) as Project;
+  let project: Project = (null as unknown) as Project;
+  try {
+    project = ((await createProject(binding as any)) as unknown) as Project;
+    Logger.log(project);
+  } catch (err) {
+    const error = getBindingError(err);
+    Logger.error(error);
+  }
 
   try {
     // Create environment
@@ -234,7 +239,7 @@ async function createProject(binding: Binding): Promise<Project> {
   return binding.mutation.createProject(
     {
       data: {
-        key: `proj-${new Date().getTime()}`,
+        key: `proj-ts${new Date().getTime()}`,
         name: `My Project ${new Date().getTime()}`
       }
     },

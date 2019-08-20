@@ -14,7 +14,7 @@ export class Project extends BaseModel {
   @StringField({ maxLength: 50, minLength: 3, nullable: false })
   name!: string;
 
-  @Matches(/^[a-z]+(-[a-z]+)*$/) // Lowercase sluggified string
+  @Matches(/^[a-z0-9]+(-[a-z0-9]+)*$/) // Lowercase sluggified string
   @StringField({ maxLength: 20, minLength: 3, nullable: false, unique: true })
   key!: string;
 
