@@ -27,7 +27,7 @@ jobs:
           name: config-prod
           command:
             # Need to set port here for now because it's expected in env.yml
-            PORT=111-fake WARTHOG_ENV=production yarn dotenv:generate
+            PORT=111-fake yarn run config
       - run:
           name: migrate
           command: yarn db:migrate
