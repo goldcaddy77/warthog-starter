@@ -21,13 +21,13 @@ jobs:
           name: build
           command: yarn build
       - run:
-          name: test
-          command: yarn test
-      - run:
           name: config-prod
           command:
             # Need to set port here for now because it's expected in env.yml
             PORT=111-fake yarn run config
+      - run:
+          name: test
+          command: yarn test
       - run:
           name: migrate
           command: yarn db:migrate
