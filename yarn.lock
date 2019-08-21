@@ -7110,10 +7110,10 @@ walker@^1.0.7, walker@~1.0.5:
   dependencies:
     makeerror "1.0.x"
 
-warthog@^1.38.0:
-  version "1.38.0"
-  resolved "https://registry.yarnpkg.com/warthog/-/warthog-1.38.0.tgz#0830238856de5fc79313e5a126fbc4a3653c53f3"
-  integrity sha512-gFBaqpZS1uoBRPjU+g3ReeJpyHTC013L0pyVQDHMscmtOpYFNbGOfpPml6e89Zz2NeNMha9SUmAFwE++O2d0MA==
+warthog@^1.40.2:
+  version "1.40.2"
+  resolved "https://registry.npmjs.org/warthog/-/warthog-1.40.2.tgz#91388e43966d40e65d70c423231af93bb60c85b0"
+  integrity sha512-C5Dk986QRYCBP2YS6TmFUp+KCsqGp/wQspY2Ou304b+3C9mYdXzOSM/NNSYLibcwOdLpi6sBi/57SsvSssHLpQ==
   dependencies:
     "@types/app-root-path" "^1.2.4"
     "@types/caller" "^1.0.0"

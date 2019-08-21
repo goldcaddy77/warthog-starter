@@ -16,8 +16,8 @@
     "bootstrap:dev": "yarn && yarn build:dev && yarn db:drop && yarn db:create && yarn db:migrate && yarn db:seed",
     "bootstrap:prod": "yarn && yarn build:prod && yarn start:prod",
     "//": "This is the default command run in CI, so it should point to Prod",
-    "build": "yarn build:prod && yarn run config && cat .env",
-    "build:prod": "yarn run config && yarn compile",
+    "build": "yarn build:prod",
+    "build:prod": "yarn compile",
     "build:dev": "yarn run config:dev && yarn codegen && yarn compile",
     "check:code": "tsc --noEmit && yarn lint && prettier ./{src,test,tools}/**/*.ts --write",
     "clean": "yarn db:drop && rm -rf ./node_modules ./generated ./dist",
@@ -70,7 +70,7 @@
     "dotenvi": "^0.6.0",
     "reflect-metadata": "^0.1.13",
     "typeorm": "^0.2.18",
-    "warthog": "^1.38.0"
+    "warthog": "^1.40.2"
   },
   "devDependencies": {
     "@types/dotenv": "^6.1.1",
