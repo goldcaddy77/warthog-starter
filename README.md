@@ -22,7 +22,7 @@ To get things set up in development, where everything will run in `ts-node`, run
 
 ### Running the server
 
-Run `yarn start:dev` to run the server.
+Run `yarn build:dev && yarn start:dev` to run the server.
 
 ### Using GraphQL Playground
 
