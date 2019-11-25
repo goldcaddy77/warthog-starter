@@ -9,7 +9,6 @@
       "autoFix": true
     }
   ],
-  "prettier.eslintIntegration": true,
   "search.exclude": {
     "dist/": true,
     "node_modules/": true

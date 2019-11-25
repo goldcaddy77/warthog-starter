@@ -32,7 +32,6 @@ export class FeatureFlagUserService extends BaseService<FeatureFlagUser> {
       projKey: data.projKey
     });
     const featureFlag = await this.featureFlagService.findOne({
-      envKey: data.envKey,
       key: data.featureKey,
       projKey: data.projKey
     });

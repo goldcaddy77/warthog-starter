@@ -231,14 +231,14 @@ export interface EnvironmentCreateInput {
   name: String
   key: String
   projKey: String
-  projectId?: String | null
+  projectId?: ID_Input | null
 }
 
 export interface EnvironmentUpdateInput {
   name?: String | null
   key?: String | null
   projKey?: String | null
-  projectId?: String | null
+  projectId?: ID_Input | null
 }
 
 export interface EnvironmentWhereInput {
@@ -290,29 +290,29 @@ export interface FeatureFlagCreateInput {
   name: String
   key: String
   projKey: String
-  projectId?: String | null
+  projectId?: ID_Input | null
 }
 
 export interface FeatureFlagSegmentCreateInput {
   projKey: String
-  projectId?: String | null
+  projectId?: ID_Input | null
   envKey: String
-  environmentId?: String | null
+  environmentId?: ID_Input | null
   featureKey: String
-  featureFlagId?: String | null
+  featureFlagId?: ID_Input | null
   segmentKey: String
-  segmentId?: String | null
+  segmentId?: ID_Input | null
 }
 
 export interface FeatureFlagSegmentUpdateInput {
   projKey?: String | null
-  projectId?: String | null
+  projectId?: ID_Input | null
   envKey?: String | null
-  environmentId?: String | null
+  environmentId?: ID_Input | null
   featureKey?: String | null
-  featureFlagId?: String | null
+  featureFlagId?: ID_Input | null
   segmentKey?: String | null
-  segmentId?: String | null
+  segmentId?: ID_Input | null
 }
 
 export interface FeatureFlagSegmentWhereInput {
@@ -381,29 +381,29 @@ export interface FeatureFlagUpdateInput {
   name?: String | null
   key?: String | null
   projKey?: String | null
-  projectId?: String | null
+  projectId?: ID_Input | null
 }
 
 export interface FeatureFlagUserCreateInput {
   featureKey: String
-  featureFlagId?: String | null
+  featureFlagId?: ID_Input | null
   userKey: String
-  userId?: String | null
+  userId?: ID_Input | null
   projKey: String
-  projectId?: String | null
+  projectId?: ID_Input | null
   envKey: String
-  environmentId?: String | null
+  environmentId?: ID_Input | null
 }
 
 export interface FeatureFlagUserUpdateInput {
   featureKey?: String | null
-  featureFlagId?: String | null
+  featureFlagId?: ID_Input | null
   userKey?: String | null
-  userId?: String | null
+  userId?: ID_Input | null
   projKey?: String | null
-  projectId?: String | null
+  projectId?: ID_Input | null
   envKey?: String | null
-  environmentId?: String | null
+  environmentId?: ID_Input | null
 }
 
 export interface FeatureFlagUserWhereInput {
@@ -561,9 +561,9 @@ export interface SegmentCreateInput {
   key: String
   description: String
   projKey: String
-  projectId?: String | null
+  projectId?: ID_Input | null
   envKey: String
-  environmentId?: String | null
+  environmentId?: ID_Input | null
 }
 
 export interface SegmentUpdateInput {
@@ -571,9 +571,9 @@ export interface SegmentUpdateInput {
   key?: String | null
   description?: String | null
   projKey?: String | null
-  projectId?: String | null
+  projectId?: ID_Input | null
   envKey?: String | null
-  environmentId?: String | null
+  environmentId?: ID_Input | null
 }
 
 export interface SegmentWhereInput {
@@ -639,24 +639,24 @@ export interface UserCreateInput {
 
 export interface UserSegmentCreateInput {
   projKey: String
-  projectId?: String | null
+  projectId?: ID_Input | null
   envKey: String
-  environmentId?: String | null
+  environmentId?: ID_Input | null
   userKey: String
-  userId?: String | null
+  userId?: ID_Input | null
   segmentKey: String
-  segmentId?: String | null
+  segmentId?: ID_Input | null
 }
 
 export interface UserSegmentUpdateInput {
   projKey?: String | null
-  projectId?: String | null
+  projectId?: ID_Input | null
   envKey?: String | null
-  environmentId?: String | null
+  environmentId?: ID_Input | null
   userKey?: String | null
-  userId?: String | null
+  userId?: ID_Input | null
   segmentKey?: String | null
-  segmentId?: String | null
+  segmentId?: ID_Input | null
 }
 
 export interface UserSegmentWhereInput {
@@ -802,12 +802,12 @@ export interface Environment extends BaseGraphQLObject {
   name: String
   key: String
   projKey: String
+  project?: Project | null
   projectId?: String | null
   segments?: Array<Segment> | null
   featureFlagUsers?: Array<FeatureFlagUser> | null
   featureFlagSegments?: Array<FeatureFlagSegment> | null
   userSegments?: Array<UserSegment> | null
-  project: Project
 }
 
 export interface FeatureFlag extends BaseGraphQLObject {
@@ -822,10 +822,10 @@ export interface FeatureFlag extends BaseGraphQLObject {
   name: String
   key: String
   projKey: String
+  project?: Project | null
   projectId?: String | null
   featureFlagUsers?: Array<FeatureFlagUser> | null
   featureFlagSegments?: Array<FeatureFlagSegment> | null
-  project: Project
 }
 
 export interface FeatureFlagSegment extends BaseGraphQLObject {
@@ -838,12 +838,16 @@ export interface FeatureFlagSegment extends BaseGraphQLObject {
   deletedById?: String | null
   version: Int
   projKey: String
+  project?: Project | null
   projectId?: String | null
   envKey: String
+  environment?: Environment | null
   environmentId?: String | null
   featureKey: String
+  featureFlag?: FeatureFlag | null
   featureFlagId?: String | null
   segmentKey: String
+  segment?: Segment | null
   segmentId?: String | null
 }
 
@@ -857,14 +861,17 @@ export interface FeatureFlagUser extends BaseGraphQLObject {
   deletedById?: String | null
   version: Int
   featureKey: String
+  featureFlag?: FeatureFlag | null
   featureFlagId?: String | null
   userKey: String
+  user?: User | null
   userId?: String | null
   projKey: String
+  project?: Project | null
   projectId?: String | null
   envKey: String
+  environment?: Environment | null
   environmentId?: String | null
-  user: User
 }
 
 export interface Project extends BaseGraphQLObject {
@@ -899,13 +906,13 @@ export interface Segment extends BaseGraphQLObject {
   key: String
   description: String
   projKey: String
+  project?: Project | null
   projectId?: String | null
   envKey: String
+  environment?: Environment | null
   environmentId?: String | null
   featureFlagSegments?: Array<FeatureFlagSegment> | null
   userSegments?: Array<UserSegment> | null
-  environment: Environment
-  project: Project
 }
 
 export interface StandardDeleteResponse {
@@ -936,12 +943,16 @@ export interface UserSegment extends BaseGraphQLObject {
   deletedById?: String | null
   version: Int
   projKey: String
+  project?: Project | null
   projectId?: String | null
   envKey: String
+  environment?: Environment | null
   environmentId?: String | null
   userKey: String
+  user?: User | null
   userId?: String | null
   segmentKey: String
+  segment?: Segment | null
   segmentId?: String | null
 }
 

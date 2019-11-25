@@ -21,7 +21,7 @@
     "build:dev": "yarn run config:dev && yarn codegen && yarn compile",
     "check:code": "tsc --noEmit && yarn lint && prettier ./{src,test,tools}/**/*.ts --write",
     "clean": "yarn db:drop && rm -rf ./node_modules ./generated ./dist",
-    "codegen": "warthog codegen && rm warthog.sqlite.tmp",
+    "codegen": "warthog codegen",
     "config": "WARTHOG_ENV=$NODE_ENV yarn dotenv:generate",
     "config:dev": "WARTHOG_ENV=development yarn dotenv:generate",
     "compile": "rm -rf ./dist && yarn tsc",
@@ -70,7 +70,7 @@
     "dotenvi": "^0.6.0",
     "reflect-metadata": "^0.1.13",
     "typeorm": "^0.2.18",
-    "warthog": "^1.40.2"
+    "warthog": "^1.49.2"
   },
   "devDependencies": {
     "@types/dotenv": "^6.1.1",
