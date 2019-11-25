@@ -24,7 +24,7 @@ heroku addons:create heroku-postgresql:hobby-dev
 
 ## Update DB Environment Variables
 
-Get your connection config by running `heroku pg:credentials:url`.  This will give you something like:
+Get your connection config by running `heroku pg:credentials:url`. This will give you something like:
 
 ```bash
 Connection information for default credential.
@@ -43,7 +43,7 @@ export WARTHOG_DB_USERNAME=jwgaa6b0dcb9yfs
 export WARTHOG_DB_PASSWORD=12345678901234567890abcdefghijklmnopqrstuvwxyz
 ```
 
-This will make your secrets available locally.  To add them to Heroku so that your app server can connect to your DB server, do use heroku config to add the ENV vars to Heroku:
+This will make your secrets available locally. To add them to Heroku so that your app server can connect to your DB server, do use heroku config to add the ENV vars to Heroku:
 
 ```bash
 heroku config:set WARTHOG_DB_HOST=ec2-54-243-47-196.compute-1.amazonaws.com
@@ -55,7 +55,7 @@ heroku config:set WARTHOG_DB_PASSWORD=12345678901234567890abcdefghijklmnopqrstuv
 ## Build app and migrate database
 
 ```bash
-yarn build && WARTHOG_ENV=development:remote_db yarn dotenv:generate && warthog db:migrate
+yarn build && WARTHOG_ENV=development:prod-like yarn dotenv:generate && yarn warthog db:migrate
 ```
 
 ## Run the server and issue a query
@@ -100,5 +100,3 @@ Then go to the project settings --> environment variables (https://circleci.com/
 
 - HEROKU_API_KEY - To get an API key, run `heroku authorizations:create`
 - HEROKU_APP_NAME - `warthog-starter`
-
-
