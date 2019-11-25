@@ -25,7 +25,7 @@
     "config": "WARTHOG_ENV=$NODE_ENV yarn dotenv:generate",
     "config:dev": "WARTHOG_ENV=development yarn dotenv:generate",
     "compile": "rm -rf ./dist && yarn tsc",
-    "deploy": "heroku git:remote -a warthog-starter && git push heroku master",
+    "deploy": "heroku git:remote -a warthog-starter && git push heroku master && WARTHOG_ENV=production yarn dotenv:generate && warthog db:migrate",
     "dotenv:generate": "dotenvi -s ${WARTHOG_ENV:-development}",
     "db:create": "warthog db:create",
     "db:drop": "warthog db:drop",
@@ -70,7 +70,7 @@
     "dotenvi": "^0.6.0",
     "reflect-metadata": "^0.1.13",
     "typeorm": "^0.2.18",
-    "warthog": "^1.49.2"
+    "warthog": "^1.49.4"
   },
   "devDependencies": {
     "@types/dotenv": "^6.1.1",

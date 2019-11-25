@@ -37,6 +37,7 @@ jobs:
             if [ "$CIRCLE_BRANCH" = "master" ]; then
               echo "On master branch, pushing to Production"
               git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master
+              DEBUG=* WARTHOG_ENV=development:prod-like yarn dotenv:generate && yarn warthog db:migrate
             else
               echo "On branch $CIRCLE_BRANCH - skipping deploy"
             fi
