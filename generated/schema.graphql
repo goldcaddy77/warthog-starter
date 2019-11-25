@@ -76,19 +76,19 @@ type Environment implements BaseGraphQLObject {
   name: String!
   key: String!
   projKey: String!
+  project: Project
   projectId: String
   segments: [Segment!]
   featureFlagUsers: [FeatureFlagUser!]
   featureFlagSegments: [FeatureFlagSegment!]
   userSegments: [UserSegment!]
-  project: Project!
 }
 
 input EnvironmentCreateInput {
   name: String!
   key: String!
   projKey: String!
-  projectId: String
+  projectId: ID
 }
 
 enum EnvironmentOrderByInput {
@@ -112,7 +112,7 @@ input EnvironmentUpdateInput {
   name: String
   key: String
   projKey: String
-  projectId: String
+  projectId: ID
 }
 
 input EnvironmentWhereInput {
@@ -172,17 +172,17 @@ type FeatureFlag implements BaseGraphQLObject {
   name: String!
   key: String!
   projKey: String!
+  project: Project
   projectId: String
   featureFlagUsers: [FeatureFlagUser!]
   featureFlagSegments: [FeatureFlagSegment!]
-  project: Project!
 }
 
 input FeatureFlagCreateInput {
   name: String!
   key: String!
   projKey: String!
-  projectId: String
+  projectId: ID
 }
 
 enum FeatureFlagOrderByInput {
@@ -212,24 +212,28 @@ type FeatureFlagSegment implements BaseGraphQLObject {
   deletedById: String
   version: Int!
   projKey: String!
+  project: Project
   projectId: String
   envKey: String!
+  environment: Environment
   environmentId: String
   featureKey: String!
+  featureFlag: FeatureFlag
   featureFlagId: String
   segmentKey: String!
+  segment: Segment
   segmentId: String
 }
 
 input FeatureFlagSegmentCreateInput {
   projKey: String!
-  projectId: String
+  projectId: ID
   envKey: String!
-  environmentId: String
+  environmentId: ID
   featureKey: String!
-  featureFlagId: String
+  featureFlagId: ID
   segmentKey: String!
-  segmentId: String
+  segmentId: ID
 }
 
 enum FeatureFlagSegmentOrderByInput {
@@ -259,13 +263,13 @@ enum FeatureFlagSegmentOrderByInput {
 
 input FeatureFlagSegmentUpdateInput {
   projKey: String
-  projectId: String
+  projectId: ID
   envKey: String
-  environmentId: String
+  environmentId: ID
   featureKey: String
-  featureFlagId: String
+  featureFlagId: ID
   segmentKey: String
-  segmentId: String
+  segmentId: ID
 }
 
 input FeatureFlagSegmentWhereInput {
@@ -334,7 +338,7 @@ input FeatureFlagUpdateInput {
   name: String
   key: String
   projKey: String
-  projectId: String
+  projectId: ID
 }
 
 type FeatureFlagUser implements BaseGraphQLObject {
@@ -347,25 +351,28 @@ type FeatureFlagUser implements BaseGraphQLObject {
   deletedById: String
   version: Int!
   featureKey: String!
+  featureFlag: FeatureFlag
   featureFlagId: String
   userKey: String!
+  user: User
   userId: String
   projKey: String!
+  project: Project
   projectId: String
   envKey: String!
+  environment: Environment
   environmentId: String
-  user: User!
 }
 
 input FeatureFlagUserCreateInput {
   featureKey: String!
-  featureFlagId: String
+  featureFlagId: ID
   userKey: String!
-  userId: String
+  userId: ID
   projKey: String!
-  projectId: String
+  projectId: ID
   envKey: String!
-  environmentId: String
+  environmentId: ID
 }
 
 enum FeatureFlagUserOrderByInput {
@@ -395,13 +402,13 @@ enum FeatureFlagUserOrderByInput {
 
 input FeatureFlagUserUpdateInput {
   featureKey: String
-  featureFlagId: String
+  featureFlagId: ID
   userKey: String
-  userId: String
+  userId: ID
   projKey: String
-  projectId: String
+  projectId: ID
   envKey: String
-  environmentId: String
+  environmentId: ID
 }
 
 input FeatureFlagUserWhereInput {
@@ -642,13 +649,13 @@ type Segment implements BaseGraphQLObject {
   key: String!
   description: String!
   projKey: String!
+  project: Project
   projectId: String
   envKey: String!
+  environment: Environment
   environmentId: String
   featureFlagSegments: [FeatureFlagSegment!]
   userSegments: [UserSegment!]
-  environment: Environment!
-  project: Project!
 }
 
 input SegmentCreateInput {
@@ -656,9 +663,9 @@ input SegmentCreateInput {
   key: String!
   description: String!
   projKey: String!
-  projectId: String
+  projectId: ID
   envKey: String!
-  environmentId: String
+  environmentId: ID
 }
 
 enum SegmentOrderByInput {
@@ -689,9 +696,9 @@ input SegmentUpdateInput {
   key: String
   description: String
   projKey: String
-  projectId: String
+  projectId: ID
   envKey: String
-  environmentId: String
+  environmentId: ID
 }
 
 input SegmentWhereInput {
@@ -783,24 +790,28 @@ type UserSegment implements BaseGraphQLObject {
   deletedById: String
   version: Int!
   projKey: String!
+  project: Project
   projectId: String
   envKey: String!
+  environment: Environment
   environmentId: String
   userKey: String!
+  user: User
   userId: String
   segmentKey: String!
+  segment: Segment
   segmentId: String
 }
 
 input UserSegmentCreateInput {
   projKey: String!
-  projectId: String
+  projectId: ID
   envKey: String!
-  environmentId: String
+  environmentId: ID
   userKey: String!
-  userId: String
+  userId: ID
   segmentKey: String!
-  segmentId: String
+  segmentId: ID
 }
 
 enum UserSegmentOrderByInput {
@@ -830,13 +841,13 @@ enum UserSegmentOrderByInput {
 
 input UserSegmentUpdateInput {
   projKey: String
-  projectId: String
+  projectId: ID
   envKey: String
-  environmentId: String
+  environmentId: ID
   userKey: String
-  userId: String
+  userId: ID
   segmentKey: String
-  segmentId: String
+  segmentId: ID
 }
 
 input UserSegmentWhereInput {
