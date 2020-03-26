@@ -18,7 +18,7 @@ let binding: Binding;
 
 let server: any;
 
-beforeAll(async done => {
+beforeAll(async (done) => {
   // process.env.DEBUG = undefined;
 
   loadConfig();
@@ -31,13 +31,13 @@ beforeAll(async done => {
   done();
 });
 
-afterAll(async done => {
+afterAll(async (done) => {
   await server.stop();
   done();
 });
 
 describe('Project', () => {
-  test('key format', async done => {
+  test('key format', async (done) => {
     let response: GraphQLError | object = new GraphQLError('');
 
     // Note: this test can also surface if you have 2 separate versions of GraphQL installed (which is bad)
@@ -60,8 +60,6 @@ describe('Project', () => {
     expect((response as GraphQLError).message).toContain('Argument Validation Error');
 
     response = await createProject('aa');
-    console.log(response);
-    console.log(JSON.stringify(response));
     expect(response).not.toBeInstanceOf(GraphQLError);
 
     response = await createProject('a-b');
@@ -96,8 +94,8 @@ async function createProject(key: string): Promise<object | GraphQLFixedError> {
       {
         data: {
           key,
-          name: 'Fake name'
-        }
+          name: 'Fake name',
+        },
       },
       `{ id name key }`
     );
