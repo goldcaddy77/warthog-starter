@@ -12,7 +12,7 @@ export class FeatureFlagSegment extends BaseModel {
 
   @ManyToOne(() => Project, (project: Project) => project.featureFlagSegments, {
     nullable: true,
-    skipGraphQLField: true
+    skipGraphQLField: true,
   })
   project?: Project;
 
@@ -21,7 +21,7 @@ export class FeatureFlagSegment extends BaseModel {
 
   @ManyToOne(() => Environment, (environment: Environment) => environment.featureFlagSegments, {
     nullable: true,
-    skipGraphQLField: true
+    skipGraphQLField: true,
   })
   environment?: Environment;
 
@@ -30,7 +30,7 @@ export class FeatureFlagSegment extends BaseModel {
 
   @ManyToOne(() => FeatureFlag, (featureFlag: FeatureFlag) => featureFlag.featureFlagSegments, {
     nullable: true,
-    skipGraphQLField: true
+    skipGraphQLField: true,
   })
   featureFlag?: FeatureFlag;
 
@@ -39,7 +39,7 @@ export class FeatureFlagSegment extends BaseModel {
 
   @ManyToOne(() => Segment, (segment: Segment) => segment.featureFlagSegments, {
     nullable: true,
-    skipGraphQLField: true
+    skipGraphQLField: true,
   })
   segment?: Segment;
 }

@@ -7,7 +7,7 @@ import {
   ProjectUpdateArgs,
   ProjectWhereArgs,
   ProjectWhereInput,
-  ProjectWhereUniqueInput
+  ProjectWhereUniqueInput,
 } from '../../generated';
 
 // import { Environment, FeatureFlag, FeatureFlagSegment, FeatureFlagUser, Segment, UserSegment } from '../models';

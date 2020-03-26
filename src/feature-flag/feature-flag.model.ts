@@ -21,7 +21,7 @@ export class FeatureFlag extends BaseModel {
   // TODO: should create "ManyToOneByKey" to join tables by a non-ID key
   @ManyToOne(() => Project, (project: Project) => project.featureFlags, {
     skipGraphQLField: true,
-    nullable: true
+    nullable: true,
   })
   project?: Project;
 

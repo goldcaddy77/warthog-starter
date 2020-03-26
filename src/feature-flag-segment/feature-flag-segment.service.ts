@@ -28,16 +28,16 @@ export class FeatureFlagSegmentService extends BaseService<FeatureFlagSegment> {
     const project = await this.projectService.findOne({ key: data.projKey });
     const environment = await this.environmentService.findOne({
       key: data.envKey,
-      projKey: data.projKey
+      projKey: data.projKey,
     });
     const featureFlag = await this.featureFlagService.findOne({
       key: data.featureKey,
-      projKey: data.projKey
+      projKey: data.projKey,
     });
     const segment = await this.segmentService.findOne({
       envKey: data.envKey,
       key: data.segmentKey,
-      projKey: data.projKey
+      projKey: data.projKey,
     });
 
     const payload = {
@@ -48,7 +48,7 @@ export class FeatureFlagSegmentService extends BaseService<FeatureFlagSegment> {
       projKey: data.projKey,
       projectId: project.id,
       segmentId: segment.id,
-      segmentKey: data.segmentKey
+      segmentKey: data.segmentKey,
     };
 
     return super.create(payload, userId);

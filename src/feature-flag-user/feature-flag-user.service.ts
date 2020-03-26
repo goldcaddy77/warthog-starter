@@ -29,15 +29,15 @@ export class FeatureFlagUserService extends BaseService<FeatureFlagUser> {
     const project = await this.projectService.findOne({ key: data.projKey });
     const environment = await this.environmentService.findOne({
       key: data.envKey,
-      projKey: data.projKey
+      projKey: data.projKey,
     });
     const featureFlag = await this.featureFlagService.findOne({
       key: data.featureKey,
-      projKey: data.projKey
+      projKey: data.projKey,
     });
     const user = await this.userService.findOrCreate(
       {
-        key: data.userKey
+        key: data.userKey,
       },
       userId
     );
@@ -50,7 +50,7 @@ export class FeatureFlagUserService extends BaseService<FeatureFlagUser> {
       projKey: data.projKey,
       projectId: project.id,
       userId: user.id,
-      userKey: data.userKey
+      userKey: data.userKey,
     };
 
     return super.create(payload, userId);

@@ -13,7 +13,7 @@ export class UserSegment extends BaseModel {
 
   @ManyToOne(() => Project, (project: Project) => project.userSegments, {
     nullable: true,
-    skipGraphQLField: true
+    skipGraphQLField: true,
   })
   project?: Project;
 
@@ -22,7 +22,7 @@ export class UserSegment extends BaseModel {
 
   @ManyToOne(() => Environment, (environment: Environment) => environment.userSegments, {
     nullable: true,
-    skipGraphQLField: true
+    skipGraphQLField: true,
   })
   environment?: Environment;
 
@@ -31,7 +31,7 @@ export class UserSegment extends BaseModel {
 
   @ManyToOne(() => User, (user: User) => user.userSegments, {
     nullable: true,
-    skipGraphQLField: true
+    skipGraphQLField: true,
   })
   user?: User;
 
@@ -40,7 +40,7 @@ export class UserSegment extends BaseModel {
 
   @ManyToOne(() => Segment, (segment: Segment) => segment.userSegments, {
     nullable: true,
-    skipGraphQLField: true
+    skipGraphQLField: true,
   })
   segment?: Segment;
 }

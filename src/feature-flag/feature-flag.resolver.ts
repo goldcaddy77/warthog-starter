@@ -8,7 +8,7 @@ import {
   Mutation,
   Query,
   Resolver,
-  Root
+  Root,
 } from 'type-graphql';
 import { Inject } from 'typedi';
 
@@ -18,7 +18,7 @@ import {
   FeatureFlagUpdateArgs,
   FeatureFlagWhereArgs,
   FeatureFlagWhereInput,
-  FeatureFlagWhereUniqueInput
+  FeatureFlagWhereUniqueInput,
 } from '../../generated';
 
 import { FeatureFlagSegment } from '../feature-flag-segment/feature-flag-segment.model';
@@ -66,9 +66,9 @@ export class FeatureFlagResolver {
   }
 
   @Query(() => [FeatureFlag])
-  async featureFlags(@Args() { where, orderBy, limit, offset }: FeatureFlagWhereArgs): Promise<
-    FeatureFlag[]
-  > {
+  async featureFlags(
+    @Args() { where, orderBy, limit, offset }: FeatureFlagWhereArgs
+  ): Promise<FeatureFlag[]> {
     return this.service.find<FeatureFlagWhereInput>(where, orderBy, limit, offset);
   }
 

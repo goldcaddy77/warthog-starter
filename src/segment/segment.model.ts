@@ -28,7 +28,7 @@ export class Segment extends BaseModel {
   // TODO: should create "ManyToOneByKey" to join tables by a non-ID key
   @ManyToOne(() => Project, (project: Project) => project.segments, {
     skipGraphQLField: true,
-    nullable: true
+    nullable: true,
   })
   project?: Project;
 
@@ -40,7 +40,7 @@ export class Segment extends BaseModel {
   // TODO: should create "ManyToOneByKey" to join tables by a non-ID key
   @ManyToOne(() => Environment, (environment: Environment) => environment.segments, {
     nullable: true,
-    skipGraphQLField: true
+    skipGraphQLField: true,
   })
   environment?: Environment;
 

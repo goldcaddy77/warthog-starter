@@ -28,16 +28,16 @@ export class UserSegmentService extends BaseService<UserSegment> {
     const project = await this.projectService.findOne({ key: data.projKey });
     const environment = await this.environmentService.findOne({
       key: data.envKey,
-      projKey: data.projKey
+      projKey: data.projKey,
     });
     const segment = await this.segmentService.findOne({
       envKey: data.envKey,
       key: data.segmentKey,
-      projKey: data.projKey
+      projKey: data.projKey,
     });
     const user = await this.userService.findOrCreate(
       {
-        key: data.userKey
+        key: data.userKey,
       },
       userId
     );
@@ -50,7 +50,7 @@ export class UserSegmentService extends BaseService<UserSegment> {
       segmentId: segment.id,
       segmentKey: data.segmentKey,
       userId: user.id,
-      userKey: data.userKey
+      userKey: data.userKey,
     };
 
     return super.create(payload, userId);

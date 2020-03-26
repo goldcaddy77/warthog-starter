@@ -7,7 +7,7 @@ import {
   SegmentUpdateArgs,
   SegmentWhereArgs,
   SegmentWhereInput,
-  SegmentWhereUniqueInput
+  SegmentWhereUniqueInput,
 } from '../../generated';
 
 import { Environment } from '../environment/environment.model';

@@ -23,7 +23,7 @@ export class SegmentService extends BaseService<Segment> {
   async create(data: DeepPartial<Segment>, userId: string): Promise<Segment> {
     const environment = await this.environmentService.findOne({
       key: data.envKey,
-      projKey: data.projKey
+      projKey: data.projKey,
     });
     const project = await this.projectService.findOne({ key: data.projKey });
     const payload = {
@@ -31,7 +31,7 @@ export class SegmentService extends BaseService<Segment> {
       envKey: environment.key,
       environmentId: environment.id,
       projKey: project.key,
-      projectId: project.id
+      projectId: project.id,
     };
 
     return super.create(payload, userId);
