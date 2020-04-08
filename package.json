@@ -8,8 +8,7 @@
     "url": "https://github.com/goldcaddy77"
   },
   "engines": {
-    "node": "12.x",
-    "yarn": "1.x"
+    "node": ">=8"
   },
   "scripts": {
     "bootstrap": "yarn bootstrap:dev",
