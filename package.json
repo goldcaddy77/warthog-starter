@@ -8,7 +8,7 @@
     "url": "https://github.com/goldcaddy77"
   },
   "engines": {
-    "node": ">=8"
+    "node": ">=0.10 <=0.12"
   },
   "scripts": {
     "bootstrap": "yarn bootstrap:dev",
@@ -17,15 +17,15 @@
     "//": "This is the default command run in CI, so it should point to Prod and also create Prod config",
     "build": "yarn build:prod",
     "build:prod": "WARTHOG_ENV=production yarn run config && yarn compile",
-    "build:dev": "yarn run config:dev && yarn codegen && yarn compile",
+    "build:dev": "yarn run config:local && yarn codegen && yarn compile",
     "check:code": "tsc --noEmit && yarn lint && prettier ./{src,test,tools}/**/*.ts --write",
     "clean": "yarn db:drop && rm -rf ./node_modules ./generated ./dist",
     "codegen": "warthog codegen",
     "config": "WARTHOG_ENV=$NODE_ENV yarn dotenv:generate",
-    "config:dev": "WARTHOG_ENV=development yarn dotenv:generate",
+    "config:local": "WARTHOG_ENV=local yarn dotenv:generate",
     "compile": "rm -rf ./dist && yarn tsc",
     "deploy": "heroku git:remote -a warthog-starter && git push heroku master && WARTHOG_ENV=production yarn dotenv:generate && warthog db:migrate",
-    "dotenv:generate": "dotenvi -s ${WARTHOG_ENV:-development}",
+    "dotenv:generate": "dotenvi -s ${WARTHOG_ENV:-local}",
     "db:create": "warthog db:create",
     "db:drop": "warthog db:drop",
     "db:migrate:generate": "warthog db:migrate:generate --name",
@@ -38,13 +38,13 @@
     "start": "yarn start:prod",
     "start:dev": "ts-node-dev --type-check src/index.ts",
     "start:dev:watch": "nodemon -e ts,graphql -x ts-node --type-check src/index.ts",
-    "start:prod": "WARTHOG_ENV=production yarn dotenv:generate && node dist/src/index.js",
+    "start:prod": "./tools/scripts/start.sh",
     "test": "./tools/scripts/test.sh",
     "test:watch": "DEBUG= jest --watch"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn run config:dev && lint-staged && tsc -p ./tsconfig.json && yarn test"
+      "pre-commit": "yarn run config:local && lint-staged && tsc -p ./tsconfig.json && yarn test"
     }
   },
   "lint-staged": {
@@ -57,11 +57,14 @@
     ]
   },
   "dependencies": {
+    "@types/pg": "^7.14.5",
     "dotenv": "^8.2.0",
     "dotenvi": "^0.8.0",
+    "pg": "^8.3.3",
     "reflect-metadata": "^0.1.13",
     "typeorm": "^0.2.24",
-    "warthog": "^2.6.0"
+    "typeorm-typedi-extensions": "^0.2.3",
+    "warthog": "^2.19.0"
   },
   "devDependencies": {
     "@types/dotenv": "^8.2.0",

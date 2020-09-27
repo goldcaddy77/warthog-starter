@@ -15,6 +15,14 @@
       }
     },
     {
+      "name": "Node (index)",
+      "type": "node",
+      "request": "launch",
+      "args": ["dist/src/index.js"],
+      "cwd": "${workspaceRoot}",
+      "protocol": "inspector"
+    },
+    {
       "type": "node",
       "request": "launch",
       "name": "Jest Tests",

@@ -1,10 +1,8 @@
-// import { GraphQLResolveInfo } from 'graphql';
-import { Arg, Ctx, FieldResolver, Query, Resolver, Root } from 'type-graphql';
+import { Arg, Args, Ctx, FieldResolver, Query, Resolver, Root } from 'type-graphql';
 import { Inject } from 'typedi';
-
 import { BaseContext } from 'warthog';
 
-import { UserWhereUniqueInput } from '../../generated';
+import { UserWhereArgs, UserWhereInput, UserWhereUniqueInput } from '../../generated';
 
 import { UserSegment } from '../user-segment/user-segment.model';
 
@@ -23,5 +21,10 @@ export class UserResolver {
   @Query(() => User)
   async user(@Arg('where') where: UserWhereUniqueInput): Promise<User> {
     return this.service.findOne<UserWhereUniqueInput>(where);
+  }
+
+  @Query(() => [User])
+  async users(@Args() { where, orderBy, limit, offset }: UserWhereArgs): Promise<User[]> {
+    return this.service.find<UserWhereInput>(where, orderBy, limit, offset);
   }
 }
