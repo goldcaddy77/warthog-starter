@@ -20,5 +20,5 @@
     "types": ["isomorphic-fetch", "jest", "node"]
   },
   "include": ["src/**/*", "test/**/*", "tools/**/*"],
-  "exclude": ["node_modules/**/*", "generated/**/*", "tools/**/*", "./generated/binding.ts"]
+  "exclude": ["node_modules/**/*", "generated/**/*", "./generated/binding.ts"]
 }

@@ -1,24 +1,10 @@
-# Deploying to Heroku
+# Creating DB in Heroku
 
-This assumes you've already built an app and have some DB migrations ready to be run on the remote DB.
+This assumes you've already created an app in heroku.
 
-## Install the CLI
-
-```bash
-brew tap heroku/brew && brew install heroku
-```
-
-## Login to CLI
+## Create Database in Heroku
 
 ```bash
-heroku login
-```
-
-## Create App in Heroku
-
-```bash
-heroku create warthog-starter
-heroku git:remote -a warthog-starter
 heroku addons:create heroku-postgresql:hobby-dev
 ```
 
@@ -55,7 +41,7 @@ heroku config:set WARTHOG_DB_PASSWORD=12345678901234567890abcdefghijklmnopqrstuv
 ## Build app and migrate database
 
 ```bash
-yarn build && WARTHOG_ENV=development:prod-like yarn dotenv:generate && yarn warthog db:migrate
+yarn build && WARTHOG_ENV=development:prod-like yarn run config && yarn warthog db:migrate
 ```
 
 ## Run the server and issue a query

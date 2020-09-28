@@ -21,7 +21,8 @@ export interface Query {
     segment: <T = Segment>(args: { where: SegmentWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     userSegments: <T = Array<UserSegment>>(args: { offset?: Int | null, limit?: Int | null, where?: UserSegmentWhereInput | null, orderBy?: UserSegmentOrderByInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     userSegment: <T = UserSegment>(args: { where: UserSegmentWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    user: <T = User>(args: { where: UserWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> 
+    user: <T = User>(args: { where: UserWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    users: <T = Array<User>>(args: { offset?: Int | null, limit?: Int | null, where?: UserWhereInput | null, orderBy?: UserOrderByInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> 
   }
 
 export interface Mutation {
@@ -181,6 +182,15 @@ export type SegmentOrderByInput =   'createdAt_ASC' |
   'envKey_DESC' |
   'environmentId_ASC' |
   'environmentId_DESC'
+
+export type UserOrderByInput =   'createdAt_ASC' |
+  'createdAt_DESC' |
+  'updatedAt_ASC' |
+  'updatedAt_DESC' |
+  'deletedAt_ASC' |
+  'deletedAt_DESC' |
+  'key_ASC' |
+  'key_DESC'
 
 export type UserSegmentOrderByInput =   'createdAt_ASC' |
   'createdAt_DESC' |

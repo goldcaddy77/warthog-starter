@@ -22,21 +22,21 @@ const { GraphQLJSONObject } = require('graphql-type-json');
 import { BaseWhereInput, JsonObject, PaginationArgs, DateOnlyString, DateTimeString } from 'warthog';
 
 // @ts-ignore
-import { FeatureFlagUser } from "../dist/src/feature-flag-user/feature-flag-user.model";
+import { FeatureFlagUser } from "../src/feature-flag-user/feature-flag-user.model";
 // @ts-ignore
-import { User } from "../dist/src/user/user.model";
+import { User } from "../src/user/user.model";
 // @ts-ignore
-import { UserSegment } from "../dist/src/user-segment/user-segment.model";
+import { UserSegment } from "../src/user-segment/user-segment.model";
 // @ts-ignore
-import { Segment } from "../dist/src/segment/segment.model";
+import { Segment } from "../src/segment/segment.model";
 // @ts-ignore
-import { FeatureFlagSegment } from "../dist/src/feature-flag-segment/feature-flag-segment.model";
+import { FeatureFlagSegment } from "../src/feature-flag-segment/feature-flag-segment.model";
 // @ts-ignore
-import { Project } from "../dist/src/project/project.model";
+import { Project } from "../src/project/project.model";
 // @ts-ignore
-import { FeatureFlag } from "../dist/src/feature-flag/feature-flag.model";
+import { FeatureFlag } from "../src/feature-flag/feature-flag.model";
 // @ts-ignore
-import { Environment } from "../dist/src/environment/environment.model";
+import { Environment } from "../src/environment/environment.model";
 
 export enum FeatureFlagUserOrderByEnum {
   createdAt_ASC = "createdAt_ASC",
