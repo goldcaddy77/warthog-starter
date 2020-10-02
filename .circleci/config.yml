@@ -1,12 +1,35 @@
-version: 2
+version: 2.1
+orbs:
+  codecov: codecov/codecov@1.0.4
 references:
   yarn_cache_key: &yarn_cache_key yarn-v1-{{ checksum "yarn.lock" }}
 jobs:
   build:
     docker:
-      - image: circleci/node:12.6
+      - image: circleci/node:10.13
+        environment:
+          PGUSER: postgres
+          PG_USER: postgres
+          PG_HOST: localhost
+      - image: postgis/postgis:12-3.0-alpine
+        environment:
+          PGUSER: postgres
+          POSTGRES_USER: postgres
+          POSTGRES_DB: warthog-test
+          POSTGRES_PASSWORD: postgres
     steps:
       - checkout
+      - run:
+          name: Waiting for Postgres to be ready
+          command: |
+            # Wait for 10 seconds for Postgres to respond
+            for i in `seq 1 10`;
+            do
+              nc -z localhost 5432 && echo Success && exit 0
+              echo -n .
+              sleep 1
+            done
+            echo Failed waiting for Postgress && exit 1
       - restore_cache:
           keys:
             - *yarn_cache_key
@@ -15,22 +38,11 @@ jobs:
           name: dependencies
           command: yarn install --frozen-lockfile
       - run:
-          name: lint
-          command: yarn lint
-      - run:
           name: build
           command: yarn build
       - run:
-          name: config-prod
-          command:
-            # Need to set port here for now because it's expected in env.yml
-            PORT=111-fake yarn run config
-      - run:
           name: test
           command: yarn test
-      - run:
-          name: migrate
-          command: yarn db:migrate
       - run:
           name: deploy
           command: |
