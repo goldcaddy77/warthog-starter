@@ -19,6 +19,6 @@
     "strictNullChecks": true,
     "types": ["isomorphic-fetch", "jest", "node"]
   },
-  "include": ["src/**/*", "test/**/*"],
-  "exclude": ["node_modules/**/*", "generated/**/*", "tools/**/*", "./generated/binding.ts"]
+  "include": ["src/**/*", "test/**/*", "tools/**/*"],
+  "exclude": ["node_modules/**/*", "generated/**/*", "./generated/binding.ts"]
 }

@@ -549,11 +549,10 @@ type Mutation {
 }
 
 type PageInfo {
-  limit: Float!
-  offset: Float!
-  totalCount: Float!
   hasNextPage: Boolean!
   hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
 }
 
 type Project implements BaseGraphQLObject {
@@ -657,6 +656,7 @@ type Query {
   userSegments(offset: Int, limit: Int = 50, where: UserSegmentWhereInput, orderBy: UserSegmentOrderByInput): [UserSegment!]!
   userSegment(where: UserSegmentWhereUniqueInput!): UserSegment!
   user(where: UserWhereUniqueInput!): User!
+  users(offset: Int, limit: Int = 50, where: UserWhereInput, orderBy: UserOrderByInput): [User!]!
 }
 
 type Segment implements BaseGraphQLObject {
@@ -804,6 +804,17 @@ type User implements BaseGraphQLObject {
 
 input UserCreateInput {
   key: String!
+}
+
+enum UserOrderByInput {
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  deletedAt_ASC
+  deletedAt_DESC
+  key_ASC
+  key_DESC
 }
 
 type UserSegment implements BaseGraphQLObject {

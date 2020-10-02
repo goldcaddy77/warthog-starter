@@ -21,7 +21,8 @@ export interface Query {
     segment: <T = Segment>(args: { where: SegmentWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     userSegments: <T = Array<UserSegment>>(args: { offset?: Int | null, limit?: Int | null, where?: UserSegmentWhereInput | null, orderBy?: UserSegmentOrderByInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     userSegment: <T = UserSegment>(args: { where: UserSegmentWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    user: <T = User>(args: { where: UserWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> 
+    user: <T = User>(args: { where: UserWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    users: <T = Array<User>>(args: { offset?: Int | null, limit?: Int | null, where?: UserWhereInput | null, orderBy?: UserOrderByInput | null }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> 
   }
 
 export interface Mutation {
@@ -181,6 +182,15 @@ export type SegmentOrderByInput =   'createdAt_ASC' |
   'envKey_DESC' |
   'environmentId_ASC' |
   'environmentId_DESC'
+
+export type UserOrderByInput =   'createdAt_ASC' |
+  'createdAt_DESC' |
+  'updatedAt_ASC' |
+  'updatedAt_DESC' |
+  'deletedAt_ASC' |
+  'deletedAt_DESC' |
+  'key_ASC' |
+  'key_DESC'
 
 export type UserSegmentOrderByInput =   'createdAt_ASC' |
   'createdAt_DESC' |
@@ -901,11 +911,10 @@ export interface FeatureFlagUser extends BaseGraphQLObject {
 }
 
 export interface PageInfo {
-  limit: Float
-  offset: Float
-  totalCount: Float
   hasNextPage: Boolean
   hasPreviousPage: Boolean
+  startCursor?: String | null
+  endCursor?: String | null
 }
 
 export interface Project extends BaseGraphQLObject {
@@ -999,11 +1008,6 @@ export type Boolean = boolean
 The javascript `Date` as string. Type represents date and time as the ISO Date string.
 */
 export type DateTime = Date | string
-
-/*
-The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point).
-*/
-export type Float = number
 
 /*
 The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.

@@ -207,13 +207,13 @@ async function seedDatabase() {
     Logger.info(project);
 
     const flagsA = await binding.query.featureFlagsForUser({
-      where: { projKey: project.key, envKey: 'production', userKey: 'user-a' }
+      where: { projKey: project.key, envKey: 'production', userKey: 'user-a' },
     });
 
     Logger.info(flagsA);
 
     const flagsB = await binding.query.featureFlagsForUser({
-      where: { projKey: project.key, envKey: 'production', userKey: 'user-b' }
+      where: { projKey: project.key, envKey: 'production', userKey: 'user-b' },
     });
 
     Logger.info(flagsB);
@@ -226,11 +226,11 @@ async function seedDatabase() {
 }
 
 seedDatabase()
-  .then(result => {
+  .then((result) => {
     Logger.info(result);
     return process.exit(0);
   })
-  .catch(err => {
+  .catch((err) => {
     Logger.error(err);
     return process.exit(1);
   });
@@ -240,8 +240,8 @@ async function createProject(binding: Binding): Promise<Project> {
     {
       data: {
         key: `proj-ts${new Date().getTime()}`,
-        name: `My Project ${new Date().getTime()}`
-      }
+        name: `My Project ${new Date().getTime()}`,
+      },
     },
     `{ id key name createdAt }`
   );
@@ -257,8 +257,8 @@ async function createEnvironment(
       data: {
         key,
         name: `${key[0].toUpperCase()}${key.substring(1)}`,
-        projKey
-      }
+        projKey,
+      },
     },
     `{ id key name projKey createdAt project { id name key createdAt } }`
   );
@@ -274,8 +274,8 @@ async function createFeatureFlag(
       data: {
         key,
         name: `${key[0].toUpperCase()}${key.substring(1)}`,
-        projKey
-      }
+        projKey,
+      },
     },
     `{ id key name projKey createdAt project { id name key createdAt } }`
   );
@@ -294,8 +294,8 @@ async function createFeatureFlagUser(
         envKey,
         featureKey,
         projKey,
-        userKey
-      }
+        userKey,
+      },
     },
     `{ id projKey envKey userKey featureKey createdAt }`
   );
@@ -314,8 +314,8 @@ async function createUserSegment(
         envKey,
         projKey,
         segmentKey,
-        userKey
-      }
+        userKey,
+      },
     },
     `{ id projKey envKey userKey segmentKey createdAt }`
   );
@@ -334,8 +334,8 @@ async function createFeatureFlagSegment(
         envKey,
         featureKey,
         projKey,
-        segmentKey
-      }
+        segmentKey,
+      },
     },
     `{ id projKey envKey segmentKey featureKey createdAt }`
   );
@@ -354,8 +354,8 @@ async function createSegment(
         envKey,
         key,
         name: `${key[0].toUpperCase()}${key.substring(1)}`,
-        projKey
-      }
+        projKey,
+      },
     },
     `{
       id

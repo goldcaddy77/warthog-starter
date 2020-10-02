@@ -8,43 +8,33 @@
     "url": "https://github.com/goldcaddy77"
   },
   "engines": {
-    "node": ">=8"
+    "node": ">=0.10 <=0.12"
   },
   "scripts": {
-    "bootstrap": "yarn bootstrap:dev",
-    "bootstrap:dev": "yarn && yarn build:dev && yarn db:drop && yarn db:create && yarn db:migrate && yarn db:seed",
-    "bootstrap:prod": "yarn && yarn build:prod && yarn start:prod",
+    "bootstrap": "./tools/scripts/bootstrap.sh",
     "//": "This is the default command run in CI, so it should point to Prod and also create Prod config",
-    "build": "yarn build:prod",
-    "build:prod": "WARTHOG_ENV=production yarn run config && yarn compile",
-    "build:dev": "yarn run config:dev && yarn codegen && yarn compile",
+    "build": "./tools/scripts/build.sh",
     "check:code": "tsc --noEmit && yarn lint && prettier ./{src,test,tools}/**/*.ts --write",
     "clean": "yarn db:drop && rm -rf ./node_modules ./generated ./dist",
     "codegen": "warthog codegen",
-    "config": "WARTHOG_ENV=$NODE_ENV yarn dotenv:generate",
-    "config:dev": "WARTHOG_ENV=development yarn dotenv:generate",
+    "config": "dotenvi -s ${WARTHOG_ENV:-local}",
     "compile": "rm -rf ./dist && yarn tsc",
-    "deploy": "heroku git:remote -a warthog-starter && git push heroku master && WARTHOG_ENV=production yarn dotenv:generate && warthog db:migrate",
-    "dotenv:generate": "dotenvi -s ${WARTHOG_ENV:-development}",
+    "deploy": "./tools/scripts/deploy.sh",
     "db:create": "warthog db:create",
     "db:drop": "warthog db:drop",
     "db:migrate:generate": "warthog db:migrate:generate --name",
     "db:migrate": "warthog db:migrate",
     "db:seed": "ts-node tools/seed.ts",
     "lint": "eslint './+(src|test|tools)/**/*.{js,ts}' --fix",
-    "list:users": "ts-node ./tools/list-users.ts",
     "playground": "warthog playground",
     "prettier": "prettier ./{src,test,tools}/**/*.ts --write",
-    "start": "yarn start:prod",
-    "start:dev": "ts-node-dev --type-check src/index.ts",
-    "start:dev:watch": "nodemon -e ts,graphql -x ts-node --type-check src/index.ts",
-    "start:prod": "WARTHOG_ENV=production yarn dotenv:generate && node dist/src/index.js",
+    "start": "./tools/scripts/start.sh",
     "test": "./tools/scripts/test.sh",
     "test:watch": "DEBUG= jest --watch"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn run config:dev && lint-staged && tsc -p ./tsconfig.json && yarn test"
+      "pre-commit": "yarn run config && lint-staged && tsc -p ./tsconfig.json && yarn test"
     }
   },
   "lint-staged": {
@@ -57,11 +47,14 @@
     ]
   },
   "dependencies": {
+    "@types/pg": "^7.14.5",
     "dotenv": "^8.2.0",
     "dotenvi": "^0.8.0",
+    "pg": "^8.3.3",
     "reflect-metadata": "^0.1.13",
     "typeorm": "^0.2.24",
-    "warthog": "^2.6.0"
+    "typeorm-typedi-extensions": "^0.2.3",
+    "warthog": "^2.19.0"
   },
   "devDependencies": {
     "@types/dotenv": "^8.2.0",
