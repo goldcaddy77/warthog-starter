@@ -44,9 +44,6 @@ jobs:
           name: test
           command: yarn test
       - run:
-          name: config
-          command: WARTHOG_ENV=production yarn run config
-      - run:
           name: deploy
           command: |
             if [ "$CIRCLE_BRANCH" = "master" ]; then
