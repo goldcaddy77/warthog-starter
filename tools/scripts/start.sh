@@ -9,15 +9,10 @@ fi
 
 # Then run config to generate our .env
 if [ -z "$WARTHOG_ENV" ]; then
-  WARTHOG_ENV=local
+  export WARTHOG_ENV=local
 fi
+
 yarn run config
-
-
-# # Now import .env into the shell for 
-# set -a
-# . ./.env >/dev/null 2>&1
-# set +a
 
 if [ -z "$WARTHOG_BUILD_ENV" ]; then
   yarn ts-node --type-check src/index.ts
