@@ -1,3 +1,7 @@
 {
-  "extends": "./tsconfig.json"
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "types": ["isomorphic-fetch", "jest", "node"]
+  },
+  "include": ["src/**/*", "test/**/*"]
 }

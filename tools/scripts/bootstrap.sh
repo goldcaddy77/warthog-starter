@@ -3,7 +3,7 @@ if [ "$WARTHOG_ENV" = "production" ]; then
     exit 1
 fi
 
-# Then run config to generate our .env
+# Default to local environment
 if [ -z "$WARTHOG_ENV" ]; then
   export WARTHOG_ENV=local
 fi
