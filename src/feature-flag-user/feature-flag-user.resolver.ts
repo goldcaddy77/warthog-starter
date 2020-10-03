@@ -6,8 +6,7 @@ import {
   FeatureFlagUserCreateInput,
   FeatureFlagUserUpdateArgs,
   FeatureFlagUserWhereArgs,
-  FeatureFlagUserWhereInput,
-  FeatureFlagUserWhereUniqueInput
+  FeatureFlagUserWhereUniqueInput,
 } from '../../generated';
 
 import { User } from '../user/user.model';
@@ -27,14 +26,11 @@ export class FeatureFlagUserResolver {
   }
 
   @Query(() => [FeatureFlagUser])
-  async featureFlagUsers(@Args()
-  {
-    where,
-    orderBy,
-    limit,
-    offset
-  }: FeatureFlagUserWhereArgs): Promise<FeatureFlagUser[]> {
-    return this.service.find<FeatureFlagUserWhereInput>(where, orderBy, limit, offset);
+  async featureFlagUsers(
+    @Args()
+    { where, orderBy, limit, offset }: FeatureFlagUserWhereArgs
+  ): Promise<FeatureFlagUser[]> {
+    return this.service.find(where, orderBy, limit, offset);
   }
 
   @Query(() => FeatureFlagUser)

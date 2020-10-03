@@ -6,8 +6,7 @@ import {
   UserSegmentCreateInput,
   UserSegmentUpdateArgs,
   UserSegmentWhereArgs,
-  UserSegmentWhereInput,
-  UserSegmentWhereUniqueInput
+  UserSegmentWhereUniqueInput,
 } from '../../generated';
 
 import { UserSegment } from './user-segment.model';
@@ -20,10 +19,10 @@ export class UserSegmentResolver {
   }
 
   @Query(() => [UserSegment])
-  async userSegments(@Args() { where, orderBy, limit, offset }: UserSegmentWhereArgs): Promise<
-    UserSegment[]
-  > {
-    return this.service.find<UserSegmentWhereInput>(where, orderBy, limit, offset);
+  async userSegments(
+    @Args() { where, orderBy, limit, offset }: UserSegmentWhereArgs
+  ): Promise<UserSegment[]> {
+    return this.service.find(where, orderBy, limit, offset);
   }
 
   @Query(() => UserSegment)

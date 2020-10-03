@@ -6,8 +6,7 @@ import {
   FeatureFlagSegmentCreateInput,
   FeatureFlagSegmentUpdateArgs,
   FeatureFlagSegmentWhereArgs,
-  FeatureFlagSegmentWhereInput,
-  FeatureFlagSegmentWhereUniqueInput
+  FeatureFlagSegmentWhereUniqueInput,
 } from '../../generated';
 
 import { FeatureFlagSegment } from './feature-flag-segment.model';
@@ -20,14 +19,11 @@ export class FeatureFlagSegmentResolver {
   }
 
   @Query(() => [FeatureFlagSegment])
-  async featureFlagSegments(@Args()
-  {
-    where,
-    orderBy,
-    limit,
-    offset
-  }: FeatureFlagSegmentWhereArgs): Promise<FeatureFlagSegment[]> {
-    return this.service.find<FeatureFlagSegmentWhereInput>(where, orderBy, limit, offset);
+  async featureFlagSegments(
+    @Args()
+    { where, orderBy, limit, offset }: FeatureFlagSegmentWhereArgs
+  ): Promise<FeatureFlagSegment[]> {
+    return this.service.find(where, orderBy, limit, offset);
   }
 
   @Query(() => FeatureFlagSegment)

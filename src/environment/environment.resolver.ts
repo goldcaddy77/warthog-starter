@@ -6,8 +6,7 @@ import {
   EnvironmentCreateInput,
   EnvironmentUpdateArgs,
   EnvironmentWhereArgs,
-  EnvironmentWhereInput,
-  EnvironmentWhereUniqueInput
+  EnvironmentWhereUniqueInput,
 } from '../../generated';
 
 // import { FeatureFlagSegment, FeatureFlagUser, Project, Segment, UserSegment } from '../models';
@@ -56,10 +55,10 @@ export class EnvironmentResolver {
   }
 
   @Query(() => [Environment])
-  async environments(@Args() { where, orderBy, limit, offset }: EnvironmentWhereArgs): Promise<
-    Environment[]
-  > {
-    return this.service.find<EnvironmentWhereInput>(where, orderBy, limit, offset);
+  async environments(
+    @Args() { where, orderBy, limit, offset }: EnvironmentWhereArgs
+  ): Promise<Environment[]> {
+    return this.service.find(where, orderBy, limit, offset);
   }
 
   @Query(() => Environment)

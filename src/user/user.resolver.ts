@@ -2,7 +2,7 @@ import { Arg, Args, Ctx, FieldResolver, Query, Resolver, Root } from 'type-graph
 import { Inject } from 'typedi';
 import { BaseContext } from 'warthog';
 
-import { UserWhereArgs, UserWhereInput, UserWhereUniqueInput } from '../../generated';
+import { UserWhereArgs, UserWhereUniqueInput } from '../../generated';
 
 import { UserSegment } from '../user-segment/user-segment.model';
 
@@ -25,6 +25,6 @@ export class UserResolver {
 
   @Query(() => [User])
   async users(@Args() { where, orderBy, limit, offset }: UserWhereArgs): Promise<User[]> {
-    return this.service.find<UserWhereInput>(where, orderBy, limit, offset);
+    return this.service.find(where, orderBy, limit, offset);
   }
 }
