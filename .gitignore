@@ -29,6 +29,7 @@ dist
 .serverless
 .webpack
 .env
+.env.local
 coverage
 
 # Temp dir

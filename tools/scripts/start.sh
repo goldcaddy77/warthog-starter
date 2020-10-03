@@ -1,7 +1,5 @@
 # Add local environment variables first
 if [ -f .env.local ]; then
-  echo ".env.local exists."
-
   set -a
   . ./.env.local >/dev/null 2>&1
   set +a
@@ -14,8 +12,8 @@ fi
 
 yarn run config
 
-if [ -z "$WARTHOG_BUILD_ENV" ]; then
-  yarn ts-node --type-check src/index.ts
-else
+if [ "$(yarn dotenv -p WARTHOG_BUILD_ENV)" = "true" ]; then
   node dist/src/index.js
+else
+  yarn ts-node --type-check src/index.ts
 fi
