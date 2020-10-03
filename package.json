@@ -29,7 +29,7 @@
     "playground": "warthog playground",
     "prettier": "prettier ./{src,test,tools}/**/*.ts --write",
     "start": "./tools/scripts/start.sh",
-    "start:prod": "WARTHOG_ENV=production ./tools/scripts/start.sh",
+    "start:prod": "NODE_ENV=production WARTHOG_ENV=production ./tools/scripts/start.sh",
     "test": "./tools/scripts/test.sh",
     "test:watch": "DEBUG= jest --watch"
   },
