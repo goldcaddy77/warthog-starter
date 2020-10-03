@@ -35,12 +35,16 @@ jobs:
             - *yarn_cache_key
             - yarn-v1-
       - run:
+          # TODO: this should install with --production (probably already does this with NODE_ENV)
           name: dependencies
           command: yarn install --frozen-lockfile
       - run:
+          # TODO: build should build a production build
           name: build
           command: yarn build
       - run:
+          # TODO: test should be as close as possible to production,
+          # with a production build and config
           name: test
           command: yarn test
       - run:

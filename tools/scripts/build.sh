@@ -15,5 +15,6 @@ yarn run compile
 ### HEROKU ###
 # Rebuild .env after codegen (which sets it to development values)
 if test -n "${STACK-}"; then
-  yarn run config
+  env
+  PORT=1111 yarn run config
 fi
