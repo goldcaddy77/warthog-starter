@@ -16,5 +16,7 @@ yarn run compile
 # Rebuild .env after codegen (which sets it to development values)
 if test -n "${STACK-}"; then
   env
-  PORT=1111 yarn run config
+  # TODO: need to figure out how to wire this up
+  # The Heroku build step does not supply port as part of the build, but sets it when the server runs
+  yarn run config
 fi

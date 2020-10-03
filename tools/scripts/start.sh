@@ -11,6 +11,11 @@ if [ -z "$WARTHOG_ENV" ]; then
 fi
 yarn run config
 
+# In Heroku, we need to take PORT and apply it to WARTHOG_APP_PORT
+if test -n "${STACK-}"; then
+  export WARTHOG_APP_PORT=$PORT
+fi
+
 build_env="$(./node_modules/.bin/dotenv -p WARTHOG_BUILD_ENV)"
 if [ "$build_env" = "true" ]; then
   echo "Running compiled JS"
