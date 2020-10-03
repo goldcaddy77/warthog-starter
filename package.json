@@ -34,7 +34,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn run config && lint-staged && tsc -p ./tsconfig.json && yarn test"
+      "pre-commit": "lint-staged && tsc -p ./tsconfig.json && yarn test"
     }
   },
   "lint-staged": {
