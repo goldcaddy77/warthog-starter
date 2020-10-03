@@ -6,8 +6,7 @@ import {
   ProjectCreateInput,
   ProjectUpdateArgs,
   ProjectWhereArgs,
-  ProjectWhereInput,
-  ProjectWhereUniqueInput
+  ProjectWhereUniqueInput,
 } from '../../generated';
 
 // import { Environment, FeatureFlag, FeatureFlagSegment, FeatureFlagUser, Segment, UserSegment } from '../models';
@@ -62,7 +61,7 @@ export class ProjectResolver {
 
   @Query(() => [Project])
   async projects(@Args() { where, orderBy, limit, offset }: ProjectWhereArgs): Promise<Project[]> {
-    return this.service.find<ProjectWhereInput>(where, orderBy, limit, offset);
+    return this.service.find(where, orderBy, limit, offset);
   }
 
   @Query(() => Project)
