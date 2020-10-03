@@ -12,11 +12,6 @@ fi
 yarn run config
 
 build_env="$(./node_modules/.bin/dotenv -p WARTHOG_BUILD_ENV)"
-echo "$build_env"
-echo "$build_env"
-echo "$build_env"
-echo "$build_env"
-
 if [ "$build_env" = "true" ]; then
   echo "Running compiled JS"
   node dist/src/index.js
