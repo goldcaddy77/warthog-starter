@@ -36,17 +36,17 @@ jobs:
             - yarn-v1-
       - run:
           name: dependencies
-          command: yarn install --frozen-lockfile    
+          command: yarn install --frozen-lockfile
       - run:
           name: build
           command: yarn build
       - run:
           name: test
           command: yarn test
-        - run:
+      - run:
           name: config
           command: WARTHOG_ENV=production yarn run config
-        - run:
+      - run:
           name: deploy
           command: |
             if [ "$CIRCLE_BRANCH" = "master" ]; then
@@ -55,7 +55,7 @@ jobs:
             else
               echo "On branch $CIRCLE_BRANCH - skipping deploy"
             fi
-        - run:
+      - run:
           name: migrate
           command: |
             if [ "$CIRCLE_BRANCH" = "master" ]; then
@@ -64,6 +64,6 @@ jobs:
             else
               echo "On branch $CIRCLE_BRANCH - skipping deploy"
             fi
-        - save_cache:
+      - save_cache:
           key: *yarn_cache_key
           paths: ~/circleci/node_modules
