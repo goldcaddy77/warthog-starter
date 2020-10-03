@@ -9,11 +9,18 @@ fi
 if [ -z "$WARTHOG_ENV" ]; then
   export WARTHOG_ENV=local
 fi
-
 yarn run config
 
-if [ "$(yarn dotenv -p WARTHOG_BUILD_ENV)" = "true" ]; then
+build_env="$(./node_modules/.bin/dotenv -p WARTHOG_BUILD_ENV)"
+echo "$build_env"
+echo "$build_env"
+echo "$build_env"
+echo "$build_env"
+
+if [ "$build_env" = "true" ]; then
+  echo "Running compiled JS"
   node dist/src/index.js
 else
+  echo "Running TypeScript code"
   yarn ts-node --type-check src/index.ts
 fi
