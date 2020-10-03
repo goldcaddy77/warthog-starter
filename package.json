@@ -16,7 +16,7 @@
     "build": "./tools/scripts/build.sh",
     "check:code": "tsc --noEmit && yarn lint && prettier ./{src,test,tools}/**/*.ts --write",
     "clean": "yarn db:drop && rm -rf ./node_modules ./generated ./dist",
-    "codegen": "warthog codegen",
+    "codegen": "WARTHOG_ENV=local yarn run config && warthog codegen",
     "config": "dotenvi -s ${WARTHOG_ENV:-local}",
     "compile": "rm -rf ./dist && yarn tsc",
     "deploy": "./tools/scripts/deploy.sh",
@@ -34,7 +34,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn run config && lint-staged && tsc -p ./tsconfig.json && yarn test"
+      "pre-commit": "lint-staged && tsc -p ./tsconfig.json && yarn test"
     }
   },
   "lint-staged": {
