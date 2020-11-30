@@ -18,15 +18,18 @@ This project is currently running on Heroku at [warthog-starter.herokuapp.com/gr
 
 ## Development Setup
 
-To get things set up in development, where everything will run in `ts-node`, run `yarn bootstrap`.
+To get things set up in development, where everything will run in `ts-node`, 
+
+1. Ensure postgres is running and update env.yml with the postgres config. If you have a password for the postgres admin user, add `DBPASS` to env.yml under `DBUSER`.   For example, you could run `docker run --detach --publish 5432:5432 -e POSTGRES_PASSWORD=password --name 'warthog-starter' postgres:10.12` 
+2. run `yarn bootstrap`.
 
 ### Running the server
 
-Run `yarn build:dev && yarn start:dev` to run the server.
+Run `yarn build && yarn start` to run the server.
 
 ### Using GraphQL Playground
 
-When you run `yarn start:dev`, it will open [graphql-playground](https://github.com/prisma/graphql-playground).  When in the playground, you can issue queries and mutations against the API.
+When you run `yarn start`, it will run [graphql-playground](https://github.com/prisma/graphql-playground) at the printed URL.  When in the playground, you can issue queries and mutations against the API.
 
 ### Running tests
 
